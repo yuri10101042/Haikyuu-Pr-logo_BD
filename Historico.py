@@ -34,15 +34,6 @@ class Historico:
                 return time
         return None
     
-        jogadores = []
-        for temporada in self.temporadas:
-            for campeonato in temporada.campeonatos:
-                for time in campeonato.times:
-                    for jogador in time.elenco_atual:
-                        if jogador.posicao.lower() == posicao.lower():
-                            jogadores.append(jogador)
-        return jogadores
-
     def calcularPontosJogadorHistorico(self, jogador):
         total_pontos = 0
         for temporada in self.Temporadas:
