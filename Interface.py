@@ -181,15 +181,6 @@ def menu_jogar_temporada(temporada):
         else:
             print("Escolha inválida. Tente novamente.")
 
-def randomizar_campeonato(campeonato):
-    mediasTimes = []
-    for time in campeonato.TimesParticipantes:
-        mediasJogadores = []
-        for jogador in time.elenco_atual:
-            mediasJogador = [jogador.]
-        mediasTimes.append([time, mediasJogadores])
-
-
 def criar_campeonato(temporada):
     nome_campeonato = input("Insira o nome do campeonato: ")
 

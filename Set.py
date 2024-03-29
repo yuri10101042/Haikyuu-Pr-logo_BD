@@ -109,59 +109,6 @@ class Set:
                 else:
                     print("Opção inválida. Tente novamente.")
 
-    def RallyPorRallyRandomizada(self, time1, time2, modalidade, mediasTime1, mediasTime2):
-        time1_em_quadra = []  # Lista para armazenar os jogadores de time1 em quadra
-        time2_em_quadra = []  # Lista para armazenar os jogadores de time2 em quadra
-
-        # Escolher jogadores de cada time que iniciarão em quadra com base na média de rallys por set
-        for jogador, media_pontos, media_levantamentos, media_bloqueios, _, media_rallys_por_set in mediasTime1:
-            if random.random() < media_rallys_por_set * random.uniform(0.8, 1.2):  # Adiciona uma variação de 20%
-                time1_em_quadra.append(jogador)
-            if len(time1_em_quadra) == 6:
-                break
-
-        for jogador, media_pontos, media_levantamentos, media_bloqueios, _, media_rallys_por_set in mediasTime2:
-            if random.random() < media_rallys_por_set * random.uniform(0.8, 1.2):  # Adiciona uma variação de 20%
-                time2_em_quadra.append(jogador)
-            if len(time2_em_quadra) == 6:
-                break
-
-        while True:
-            rally = Rally()
-            rally.JogarRallyRandomizada(time1, time2, time1_em_quadra, time2_em_quadra)
-
-            if rally.vencedor_rally == time1.nome:
-                self.pontos_time1 += 1
-            elif rally.vencedor_rally == time2.nome:
-                self.pontos_time2 += 1
-
-            print(f"\nPontos - {time1.nome}: {self.pontos_time1} | {time2.nome}: {self.pontos_time2}")
-
-            self.adicionar_rally(rally)
-
-            if (
-                abs(self.pontos_time1 - self.pontos_time2) > 1
-                and max(self.pontos_time1, self.pontos_time2) >= modalidade.pontosMaxSet
-            ):
-                self.vencedor_set = time1 if self.pontos_time1 > self.pontos_time2 else time2
-                print(f"Set vencido por {self.vencedor_set.nome}.")
-                break
-
-            # Verifica se deve fazer substituições com base nas médias de rallys em quadra de cada jogador
-            for time, em_quadra, medias_time in [(time1, time1_em_quadra, mediasTime1), (time2, time2_em_quadra, mediasTime2)]:
-                for jogador in em_quadra:
-                    # Calcula a probabilidade de o jogador continuar em quadra
-                    probabilidade = medias_time[em_quadra.index(jogador)][5] * random.uniform(0.8, 1.2)
-                    if random.random() > probabilidade:  # O jogador sai de quadra
-                        jogador_sai = jogador
-                        jogadores_disponiveis = [jog for jog in time.elenco_atual if jog not in em_quadra]
-                        if jogadores_disponiveis:  # Se houver jogadores disponíveis para substituição
-                            jogador_entra = max(jogadores_disponiveis, key=lambda x: medias_time[time.elenco_atual.index(x)][5])
-                            em_quadra.remove(jogador_sai)
-                            em_quadra.append(jogador_entra)
-
-        # Continua o loop até que os pontos máximos do set sejam alcançados e uma equipe vença
-
     def PontosPorJogadorSet(self, jogador):
         pontos_jogador = 0
         for rally in self.rallys:

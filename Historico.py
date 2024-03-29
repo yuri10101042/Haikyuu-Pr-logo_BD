@@ -33,7 +33,7 @@ class Historico:
             if time.nome.lower() == nome_time.lower():
                 return time
         return None
-    
+
     def calcularPontosJogadorHistorico(self, jogador):
         total_pontos = 0
         for temporada in self.Temporadas:

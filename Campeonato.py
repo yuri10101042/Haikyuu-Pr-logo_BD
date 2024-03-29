@@ -59,33 +59,6 @@ class Campeonato:
                     print("Escolha inválida. Tente novamente.")
         print("Não existem Fases com jogos inacabados.")
 
-    def JogarCampeonatoRandomizada(self, mediasTimes):
-        for fase in self.fases:
-            if not fase.todasPartidasConcluidas():
-                print(f"\nFase {fase.numero} - Partidas:")
-                for partida in [partida for partida in fase.partidas if partida.vencedor is None]:
-                    time1, time2 = partida.time1, partida.time2
-                    time1_medias = next((medias for medias in mediasTimes if medias[0] == time1), None)
-                    time2_medias = next((medias for medias in mediasTimes if medias[0] == time2), None)
-                    if time1_medias and time2_medias:
-                        partida.SetPorSetRandomizada(time1_medias[1:], time2_medias[1:])
-                        if fase.numero == self.TotalFases and fase.todasPartidasConcluidas():
-                            self.ClassificacaoTimes.append(fase.partidas[0].vencedor.nome)
-                            self.ClassificacaoTimes.append(fase.partidas[0].perdedor.nome)
-                            self.ClassificacaoTimes.append(fase.partidas[1].vencedor.nome)
-        print("Não existem Fases com jogos inacabados.")
-        
-        for fase in self.fases:
-            if not fase.todasPartidasConcluidas():
-                print(f"\nFase {fase.numero} - Partidas:")
-                for partida in [partida for partida in fase.partidas if partida.vencedor is None]:
-                    partida.SetPorSetRandomizada(time1_medias, time2_medias)
-                    if fase.numero == self.TotalFases and fase.todasPartidasConcluidas():
-                        self.ClassificacaoTimes.append(fase.partidas[0].vencedor.nome)
-                        self.ClassificacaoTimes.append(fase.partidas[0].perdedor.nome)
-                        self.ClassificacaoTimes.append(fase.partidas[1].vencedor.nome)
-        print("Não existem Fases com jogos inacabados.")
-
     def calcularPontosJogadorCampeonato(self, jogador):
         pontos = 0
         print("teste")

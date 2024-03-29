@@ -41,31 +41,6 @@ class Partida:
                 self.perdedor = self.time1 if set_obj.vencedor_set == self.time2 else self.time2
                 break
 
-    def SetPorSetRandomizada(self, mediasTime1, mediasTime2):
-        # Verifica se a partida já foi concluída antes de iniciar um novo set
-        if self.vencedor is not None:
-            print(f"A partida já foi concluída! O vencedor é: {self.vencedor.nome}")
-            return
-
-        while True:
-            set_obj = Set()
-            set_obj.RallyPorRallyRandomizada(self.time1, self.time2, self.modalidade, mediasTime1, mediasTime2)
-
-            if set_obj.vencedor_set == self.time1:
-                self.SetsTime1 += 1
-            elif set_obj.vencedor_set == self.time2:
-                self.SetsTime2 += 1
-
-            print(f"\nSets - {self.time1.nome}: {self.SetsTime1} | {self.time2.nome}: {self.SetsTime2}")
-
-            self.adicionar_set(set_obj)
-
-            if max(self.SetsTime1, self.SetsTime2) > (self.modalidade.setsMax / 2):
-                print(f"\nPartida vencida por {set_obj.vencedor_set.nome}.")
-                self.vencedor = set_obj.vencedor_set
-                self.perdedor = self.time1 if set_obj.vencedor_set == self.time2 else self.time2
-                break
-
     def PontosPorJogadorPartida(self, jogador):
         pontos_jogador = 0
         for set_obj in self.sets:
