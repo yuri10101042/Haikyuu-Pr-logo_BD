@@ -13,7 +13,7 @@ class Set:
         obj_copy = copy.deepcopy(rally)
         self.rallys.append(obj_copy)
 
-    def RallyPorRally(self, time1, time2, modalidade):
+    def RallyPorRally(self, time1, time2, mediasTime1, mediasTime2, modalidade):
         time1_em_quadra = []  # Lista para armazenar os jogadores de time1 em quadra
         time2_em_quadra = []  # Lista para armazenar os jogadores de time2 em quadra
 
@@ -45,8 +45,18 @@ class Set:
                 print("Opção inválida. Tente novamente.")
 
         while True:
+            indices_time1_em_quadra = [time1.elenco_atual.index(item) for item in time1_em_quadra]
+            indices_time2_em_quadra = [time2.elenco_atual.index(item) for item in time2_em_quadra]
+
+            mediasEmQuadra1 = [mediasTime1[i] for i in indices_time1_em_quadra]
+            mediasEmQuadra2 = [mediasTime2[i] for i in indices_time2_em_quadra]
+
             rally = Rally()
-            rally.JogarRally(time1, time2, time1_em_quadra , time2_em_quadra)
+            escolha_randomizar = input("Deseja randomizar o rally? ('s' ou 'n') ")
+            if escolha_randomizar == 's':
+                rally.JogarRallyRandomizado(time1, time2, time1_em_quadra , time2_em_quadra, mediasEmQuadra1, mediasEmQuadra2)
+            else:
+                rally.JogarRally(time1, time2, time1_em_quadra , time2_em_quadra)
 
             if rally.vencedor_rally == time1.nome:
                 self.pontos_time1 += 1
@@ -108,6 +118,139 @@ class Set:
                     break
                 else:
                     print("Opção inválida. Tente novamente.")
+
+
+    def RallyPorRallyRandomizado(self, time1, time2, mediasTime1, mediasTime2, modalidade):
+
+        # Escolher jogadores de cada time que iniciarão em quadra
+
+        rallysPorSet_time1 = [max(random.gauss(media[4], 0.1),0.00000001) for media in mediasTime1]
+        rallysPorSet_time2 = [max(random.gauss(media[4], 0.1),0.00000001) for media in mediasTime2]  
+
+        time1_em_quadra = []  # Lista para armazenar os jogadores de time1 em quadra
+        jogadores_disponiveis_time1 = list(time1.elenco_atual)
+        rallysPorSet_time1_temp = list(rallysPorSet_time1)
+        
+        # Restrição: permitir apenas um jogador com posição de libero em quadra por vez
+        libero_em_quadra_time1 = False
+
+        for _ in range(min(6, len(time1.elenco_atual))):
+            while True:
+                jogador = random.choices(jogadores_disponiveis_time1, weights=rallysPorSet_time1_temp, k=1)[0]
+                if jogador.posicao == 'Libero' and libero_em_quadra_time1:
+                    continue
+                else:
+                    if jogador.posicao == 'Libero':
+                        libero_em_quadra_time1 = True
+                    time1_em_quadra.append(jogador)
+                    del rallysPorSet_time1_temp[jogadores_disponiveis_time1.index(jogador)]
+                    jogadores_disponiveis_time1.remove(jogador)
+                    break
+
+        time2_em_quadra = []  # Lista para armazenar os jogadores de time2 em quadra
+        jogadores_disponiveis_time2 = list(time2.elenco_atual)
+        rallysPorSet_time2_temp = list(rallysPorSet_time2)
+
+        # Restrição: permitir apenas um jogador com posição de libero em quadra por vez
+        libero_em_quadra_time2 = False
+
+        for _ in range(min(6, len(time2.elenco_atual))):
+            while True:
+                jogador = random.choices(jogadores_disponiveis_time2, weights=rallysPorSet_time2_temp, k=1)[0]
+                if jogador.posicao == 'Libero' and libero_em_quadra_time2:
+                    continue
+                else:
+                    if jogador.posicao == 'Libero':
+                        libero_em_quadra_time2 = True
+                    time2_em_quadra.append(jogador)
+                    del rallysPorSet_time2_temp[jogadores_disponiveis_time2.index(jogador)]
+                    jogadores_disponiveis_time2.remove(jogador)
+                    break
+
+        # Escolher jogadores de cada time que iniciarão em quadra
+        print(f"Jogadores que iniciarão em quadra de {time1.nome}:")
+        for jogador in time1_em_quadra:
+            print(f"- {jogador.nome}")
+        print(f"Jogadores que iniciarão em quadra de {time2.nome}:")
+        for jogador in time2_em_quadra:
+            print(f"- {jogador.nome}")
+
+        while True:
+
+            indices_time1_em_quadra = [time1.elenco_atual.index(item) for item in time1_em_quadra]
+            indices_time2_em_quadra = [time2.elenco_atual.index(item) for item in time2_em_quadra]
+
+            mediasEmQuadra1 = [mediasTime1[i] for i in indices_time1_em_quadra]
+            mediasEmQuadra2 = [mediasTime2[i] for i in indices_time2_em_quadra]
+
+            rally = Rally()
+            rally.JogarRallyRandomizado(time1, time2, time1_em_quadra , time2_em_quadra, mediasEmQuadra1, mediasEmQuadra2)
+
+            if rally.vencedor_rally == time1.nome:
+                self.pontos_time1 += 1
+            elif rally.vencedor_rally == time2.nome:
+                self.pontos_time2 += 1
+
+            print(f"\nPontos - {time1.nome}: {self.pontos_time1} | {time2.nome}: {self.pontos_time2}")
+
+            self.adicionar_rally(rally)
+
+            if (
+                abs(self.pontos_time1 - self.pontos_time2) > 1
+                and max(self.pontos_time1, self.pontos_time2) >= modalidade.pontosMaxSet
+            ):
+                self.vencedor_set = time1 if self.pontos_time1 > self.pontos_time2 else time2
+                print(f"Set vencido por {self.vencedor_set.nome}.")
+                break
+
+            time1_em_quadra = []  # Lista para armazenar os jogadores de time1 em quadra
+            jogadores_disponiveis_time1 = list(time1.elenco_atual)
+            rallysPorSet_time1_temp = list(rallysPorSet_time1)
+            
+            # Restrição: permitir apenas um jogador com posição de libero em quadra por vez
+            libero_em_quadra_time1 = False
+
+            for _ in range(min(6, len(time1.elenco_atual))):
+                while True:
+                    jogador = random.choices(jogadores_disponiveis_time1, weights=rallysPorSet_time1_temp, k=1)[0]
+                    if jogador.posicao == 'Libero' and libero_em_quadra_time1:
+                        continue
+                    else:
+                        if jogador.posicao == 'Libero':
+                            libero_em_quadra_time1 = True
+                        time1_em_quadra.append(jogador)
+                        del rallysPorSet_time1_temp[jogadores_disponiveis_time1.index(jogador)]
+                        jogadores_disponiveis_time1.remove(jogador)
+                        break
+
+            time2_em_quadra = []  # Lista para armazenar os jogadores de time2 em quadra
+            jogadores_disponiveis_time2 = list(time2.elenco_atual)
+            rallysPorSet_time2_temp = list(rallysPorSet_time2)
+
+            # Restrição: permitir apenas um jogador com posição de libero em quadra por vez
+            libero_em_quadra_time2 = False
+
+            for _ in range(min(6, len(time2.elenco_atual))):
+                while True:
+                    jogador = random.choices(jogadores_disponiveis_time2, weights=rallysPorSet_time2_temp, k=1)[0]
+                    if jogador.posicao == 'Libero' and libero_em_quadra_time2:
+                        continue
+                    else:
+                        if jogador.posicao == 'Libero':
+                            libero_em_quadra_time2 = True
+                        time2_em_quadra.append(jogador)
+                        del rallysPorSet_time2_temp[jogadores_disponiveis_time2.index(jogador)]
+                        jogadores_disponiveis_time2.remove(jogador)
+                        break
+
+            # Escolher jogadores de cada time que iniciarão em quadra
+            print(f"Jogadores que iniciarão em quadra de {time1.nome}:")
+            for jogador in time1_em_quadra:
+                print(f"- {jogador.nome}")
+            print(f"Jogadores que iniciarão em quadra de {time2.nome}:")
+            for jogador in time2_em_quadra:
+                print(f"- {jogador.nome}")
+
 
     def PontosPorJogadorSet(self, jogador):
         pontos_jogador = 0

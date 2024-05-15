@@ -150,3 +150,93 @@ class Rally:
 
                 self.adicionar_recepcao(elenco_atual[int(numero_jogador) - 1].nome)
                 continue
+
+    def JogarRallyRandomizado(self, time1, time2, EmQuadra1, EmQuadra2, mediasEmQuadra1, mediasEmQuadra2):
+        times = [time1, time2]
+
+        for jogador in EmQuadra1:
+            self.EmQuadra.append(jogador)
+        
+        for jogador in EmQuadra2:
+            self.EmQuadra.append(jogador)
+
+        # 1- Verifica quantos levantamentos, bloqueios e recepções cada jogador realiza com base nas médias
+        levantamentos_time1 = [max(int(random.gauss(media[1], 1)), 0) for media in mediasEmQuadra1]  # Variação de ±0.5 no desvio padrão
+        bloqueios_time1 = [max(int(random.gauss(media[2], 1)), 0) for media in mediasEmQuadra1]
+        recepcoes_time1 = [max(int(random.gauss(media[3], 1)), 0) for media in mediasEmQuadra1]
+
+        levantamentos_time2 = [max(int(random.gauss(media[1], 1)), 0) for media in mediasEmQuadra2]
+        bloqueios_time2 = [max(int(random.gauss(media[2], 1)), 0) for media in mediasEmQuadra2]
+        recepcoes_time2 = [max(int(random.gauss(media[3], 1)), 0) for media in mediasEmQuadra2]
+
+        for jogador in EmQuadra1:
+            if jogador.posicao == "Libero":
+                bloqueios_time1[EmQuadra1.index(jogador)] = 0
+            for _ in range(levantamentos_time1[EmQuadra1.index(jogador)]):
+                self.adicionar_levantamento(jogador.nome)
+            for _ in range(bloqueios_time1[EmQuadra1.index(jogador)]):
+                self.adicionar_bloqueio(jogador.nome)
+            for _ in range(recepcoes_time1[EmQuadra1.index(jogador)]):
+                self.adicionar_recepcao(jogador.nome)
+
+        for jogador in EmQuadra2:
+            if jogador.posicao == "Libero":
+                bloqueios_time2[EmQuadra2.index(jogador)] = 0
+            for _ in range(levantamentos_time2[EmQuadra2.index(jogador)]):
+                self.adicionar_levantamento(jogador.nome)
+            for _ in range(bloqueios_time2[EmQuadra2.index(jogador)]):
+                self.adicionar_bloqueio(jogador.nome)
+            for _ in range(recepcoes_time2[EmQuadra2.index(jogador)]):
+                self.adicionar_recepcao(jogador.nome)
+
+
+        # 2- Calcula a média de levantamentos, bloqueios e recepções realizadas por cada time
+        media_levantamentos_time1 = sum(levantamentos_time1) / len(levantamentos_time1)
+        media_bloqueios_time1 = sum(bloqueios_time1) / len(bloqueios_time1)
+        media_recepcoes_time1 = sum(recepcoes_time1) / len(recepcoes_time1)
+
+        media_levantamentos_time2 = sum(levantamentos_time2) / len(levantamentos_time2)
+        media_bloqueios_time2 = sum(bloqueios_time2) / len(bloqueios_time2)
+        media_recepcoes_time2 = sum(recepcoes_time2) / len(recepcoes_time2)
+
+        # 3- Calcula a média das médias de pontos dos jogadores de cada time
+        media_pontos_jogadores_time1 = sum([media[0] for media in mediasEmQuadra1]) / len(mediasEmQuadra1)
+        media_pontos_jogadores_time2 = sum([media[0] for media in mediasEmQuadra2]) / len(mediasEmQuadra2)
+
+        # 4- Calcula o score de cada time considerando os levantamentos, bloqueios, recepções e médias de pontos com desvio padrão de 0.1
+        score_time1 = max((media_levantamentos_time1 + media_bloqueios_time1 + media_recepcoes_time1 + media_pontos_jogadores_time1 + random.gauss(0, 0.1)), 0)
+        score_time2 = max((media_levantamentos_time2 + media_bloqueios_time2 + media_recepcoes_time2 + media_pontos_jogadores_time2 + random.gauss(0, 0.1)), 0)
+
+        probabilidade_time1 = score_time1 / (score_time1 + score_time2)
+        probabilidade_time2 = 1 - probabilidade_time1
+
+        # 5- Determina o vencedor do rally com base nas probabilidades
+        vencedor_rally = random.choices([time1, time2], weights=[probabilidade_time1, probabilidade_time2])[0]
+        self.vencedor_rally = vencedor_rally.nome
+
+# 6- Utiliza as médias de pontuação de cada jogador do time vencedor para decidir quem realizou o ponto
+        if vencedor_rally in [time1, time2]:
+            medias_time_vencedor = mediasEmQuadra1 if vencedor_rally == time1.nome else mediasEmQuadra2
+            pontos_jogadores_time_vencedor = [max(random.gauss(media[0], 0.1), 0.00000001) for media in medias_time_vencedor]  # Variação de ±0.1 na média de pontos
+
+            while True:
+                if random.random() < 0.1:  # Pequena probabilidade de ser erro do adversário
+                    self.ponto = False
+                    break
+                pontuador = random.choices(EmQuadra1 if vencedor_rally == time1.nome else EmQuadra2, weights=pontos_jogadores_time_vencedor)[0]
+                if pontuador.posicao == "Libero":
+                    continue
+                self.ponto = pontuador.nome
+                break
+        else:
+            self.ponto = False
+
+        print(f"O vencedor do rally é: {self.vencedor_rally}")
+        if self.ponto != False:
+            print(f"O jogador que realizou o ponto foi: {self.ponto}")
+        else:
+            print("O ponto foi erro do adversário.")
+        print(f"Levantamentos realizados: {', '.join(self.levantamentos)}")
+        print(f"Bloqueios realizados: {', '.join(self.bloqueios)}")
+        print(f"Recepções realizadas: {', '.join(self.recepcoes)}")
+

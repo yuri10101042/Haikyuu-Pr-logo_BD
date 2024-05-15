@@ -36,7 +36,7 @@ class Campeonato:
 
         self.fases.append(nova_fase)
 
-    def JogarCampeonato(self):
+    def JogarCampeonato(self, mediasTimes):
         for fase in self.fases:
             if not fase.todasPartidasConcluidas():
                 print(f"\nFase {fase.numero} - Partidas:")
@@ -49,19 +49,49 @@ class Campeonato:
                     return
                 elif escolha_partida.isdigit() and 1 <= int(escolha_partida) <= len([partida for partida in fase.partidas if partida.vencedor is None]):
                     partida_escolhida = [partida for partida in fase.partidas if partida.vencedor is None][int(escolha_partida) - 1]
-                    partida_escolhida.SetPorSet()  # Certifique-se de ter uma instância de modalidade definida
+                    time1_indice = self.TimesParticipantes.index(partida_escolhida.time1)
+                    time2_indice = self.TimesParticipantes.index(partida_escolhida.time2)
+                    mediasTime1 = mediasTimes[time1_indice]
+                    mediasTime2 = mediasTimes[time2_indice]
+                    escolha_randomizar = input("Deseja randomizar a partida? ('s' ou 'n') ")
+                    if escolha_randomizar == 's':
+                        partida_escolhida.SetPorSetRandomizado(mediasTime1,mediasTime2)
+                    else:
+                        partida_escolhida.SetPorSet(mediasTime1,mediasTime2)  # Certifique-se de ter uma instância de modalidade definida
                     if fase.numero == self.TotalFases and fase.todasPartidasConcluidas():
                         self.ClassificacaoTimes.append(fase.partidas[0].vencedor.nome)
                         self.ClassificacaoTimes.append(fase.partidas[0].perdedor.nome)
                         self.ClassificacaoTimes.append(fase.partidas[1].vencedor.nome)
+                        print("Times no pódio e suas posições:")
+                        for i, time in enumerate(self.ClassificacaoTimes, start=1):
+                            print(f"{i}. {time}")
                     return
                 else:
                     print("Escolha inválida. Tente novamente.")
         print("Não existem Fases com jogos inacabados.")
 
+    def JogarCampeonatoRandomizado(self, mediasTimes):
+        while True:
+            self.criarProximaFase()
+            for partida in self.fases[-1].partidas:
+                time1_indice = self.TimesParticipantes.index(partida.time1)
+                time2_indice = self.TimesParticipantes.index(partida.time2)
+                mediasTime1 = mediasTimes[time1_indice]
+                mediasTime2 = mediasTimes[time2_indice]
+                if partida.vencedor == None:
+                    partida.SetPorSetRandomizado(mediasTime1,mediasTime2)
+            if self.fases[-1].numero != self.TotalFases:
+                break
+        self.ClassificacaoTimes.append(self.fases[-1].partidas[0].vencedor.nome)
+        self.ClassificacaoTimes.append(self.fases[-1].partidas[0].perdedor.nome)
+        self.ClassificacaoTimes.append(self.fases[-1].partidas[1].vencedor.nome)
+        print("Times no pódio e suas posições:")
+        for i, time in enumerate(self.ClassificacaoTimes, start=1):
+            print(f"{i}. {time}")
+
+
     def calcularPontosJogadorCampeonato(self, jogador):
         pontos = 0
-        print("teste")
         for fase in self.fases:
             pontos += fase.calcularPontosJogadorFase(jogador)
         return pontos
@@ -89,6 +119,12 @@ class Campeonato:
         for fase in self.fases:
             total_rallys += fase.contar_rallys_do_jogador(jogador)
         return total_rallys
+
+    def contar_rallys_por_set_do_jogador(self, jogador):
+        total_rallys_por_set = 0
+        for fase in self.fases:
+            total_rallys_por_set += fase.contar_rallys_por_set_do_jogador(jogador)
+        return total_rallys_por_set/len(self.fases)
 
     def jogadorAverageCampeonato(self, jogador):
         total_pontos = self.calcularPontosJogadorCampeonato(jogador)

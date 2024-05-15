@@ -16,7 +16,7 @@ class Partida:
         obj_copy = copy.deepcopy(set_obj)
         self.sets.append(obj_copy)
 
-    def SetPorSet(self):
+    def SetPorSet(self, mediasTime1, mediasTime2):
         # Verifica se a partida já foi concluída antes de iniciar um novo set
         if self.vencedor is not None:
             print(f"A partida já foi concluída! O vencedor é: {self.vencedor.nome}")
@@ -24,7 +24,35 @@ class Partida:
 
         while True:
             set_obj = Set()
-            set_obj.RallyPorRally(self.time1, self.time2, self.modalidade)
+            escolha_randomizar = input("Deseja randomizar o set? ('s' ou 'n') ")
+            if escolha_randomizar == 's':
+                set_obj.RallyPorRallyRandomizado(self.time1, self.time2, mediasTime1, mediasTime2, self.modalidade)
+            else:
+                set_obj.RallyPorRally(self.time1, self.time2, mediasTime1, mediasTime2, self.modalidade)
+            if set_obj.vencedor_set == self.time1:
+                self.SetsTime1 += 1
+            elif set_obj.vencedor_set == self.time2:
+                self.SetsTime2 += 1
+
+            print(f"\nSets - {self.time1.nome}: {self.SetsTime1} | {self.time2.nome}: {self.SetsTime2}")
+
+            self.adicionar_set(set_obj)
+
+            if max(self.SetsTime1, self.SetsTime2) > (self.modalidade.setsMax/2):
+                print(f"\nPartida vencida por {set_obj.vencedor_set.nome}.")
+                self.vencedor = set_obj.vencedor_set;
+                self.perdedor = self.time1 if set_obj.vencedor_set == self.time2 else self.time2
+                break
+
+    def SetPorSetRandomizado(self,mediasTime1,mediasTime2):
+        # Verifica se a partida já foi concluída antes de iniciar um novo set
+        if self.vencedor is not None:
+            print(f"A partida já foi concluída! O vencedor é: {self.vencedor.nome}")
+            return
+
+        while True:
+            set_obj = Set()
+            set_obj.RallyPorRallyRandomizado(self.time1, self.time2, mediasTime1, mediasTime2, self.modalidade)
 
             if set_obj.vencedor_set == self.time1:
                 self.SetsTime1 += 1
@@ -70,6 +98,10 @@ class Partida:
         for set_obj in self.sets:
             total_rallys += set_obj.contar_rallys_em_quadra(jogador)
         return total_rallys
+
+    def contar_rallys_por_set_do_jogador(self, jogador):
+        total_rallys_por_set = self.contar_rallys_do_jogador(jogador)/len(self.sets)
+        return total_rallys_por_set
 
     def jogadorAveragePartida(self, jogador):
         total_pontos = self.PontosPorJogadorPartida(jogador)

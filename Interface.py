@@ -2,6 +2,7 @@ import sys
 import os
 import threading
 import time
+import random
 from Historico import Historico
 from Temporada import Temporada
 from Campeonato import Campeonato
@@ -122,7 +123,7 @@ def menu_jogar_temporada(temporada):
                     print(f"{i}. {campeonato.nome}")
                 escolha_campeonato = int(input("Escolha o número do campeonato: "))
                 if 1 <= escolha_campeonato <= len(campeonatos_validos):
-                    menu_campeonato(campeonatos_validos[escolha_campeonato - 1])
+                    menu_campeonato(campeonatos_validos[escolha_campeonato - 1],temporada)
                 else:
                     print("Escolha inválida.")
 
@@ -136,7 +137,89 @@ def menu_jogar_temporada(temporada):
                     print(f"{i}. {partida.time1.nome} vs {partida.time2.nome}")
                 escolha_partida = int(input("Escolha o número da partida: "))
                 if 1 <= escolha_partida <= len(partidas_avulsas_validas):
-                    partidas_avulsas_validas[escolha_partida - 1].SetPorSet()
+                    mediasTime1 = []
+                    mediasTime2 = []
+                    index_Temporada = historico.Temporadas.index(temporada)
+
+                    for jogador in partidas_avulsas_validas[escolha_partida - 1].time1.elenco_atual:
+                        peso = 1
+                        pesoTotal = 0
+                        mediaPontos = 0
+                        mediaLevantamentos = 0
+                        mediaBloqueio = 0
+                        mediaRecepcoes = 0
+                        mediaRallysPorSet = 0
+                        if(historico.contar_rallys_do_jogador(jogador) == 0):
+                            jogador_base = random.choice([jogador_escolhido for jogador_escolhido in historico.Jogadores if jogador_escolhido.posicao == jogador.posicao])
+                            for i in range(index_Temporada, -1, -1):
+                                if historico.Temporadas[i].contar_rallys_do_jogador(jogador_base) != 0:
+                                    mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador_base))
+                                    pesoTotal += peso
+                                    peso /= 2
+                        else:
+                            for i in range(index_Temporada, -1, -1):
+                                if historico.Temporadas[i].contar_rallys_do_jogador(jogador) != 0:
+                                    mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador))
+                                    pesoTotal += peso
+                                    peso /= 2
+                        if(pesoTotal != 0):
+                            mediaPontos /= pesoTotal
+                            mediaLevantamentos /= pesoTotal
+                            mediaBloqueio /= pesoTotal
+                            mediaRecepcoes /= pesoTotal
+                            mediaRallysPorSet /= pesoTotal
+                        mediasTime1.append([mediaPontos, mediaLevantamentos, mediaBloqueio, mediaRecepcoes, mediaRallysPorSet])
+
+                    for jogador in partidas_avulsas_validas[escolha_partida - 1].time2.elenco_atual:
+                        peso = 1
+                        pesoTotal = 0
+                        mediaPontos = 0
+                        mediaLevantamentos = 0
+                        mediaBloqueio = 0
+                        mediaRecepcoes = 0
+                        mediaRallysPorSet = 0
+                        if(historico.contar_rallys_do_jogador(jogador) == 0):
+                            jogador_base = random.choice([jogador_escolhido for jogador_escolhido in historico.Jogadores if jogador_escolhido.posicao == jogador.posicao])
+                            for i in range(index_Temporada, -1, -1):
+                                if historico.Temporadas[i].contar_rallys_do_jogador(jogador_base) != 0:
+                                    mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador_base))
+                                    pesoTotal += peso
+                                    peso /= 2
+                        else:
+                            for i in range(index_Temporada, -1, -1):
+                                if historico.Temporadas[i].contar_rallys_do_jogador(jogador) != 0:
+                                    mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador))
+                                    pesoTotal += peso
+                                    peso /= 2
+                        if(pesoTotal != 0):
+                            mediaPontos /= pesoTotal
+                            mediaLevantamentos /= pesoTotal
+                            mediaBloqueio /= pesoTotal
+                            mediaRecepcoes /= pesoTotal
+                            mediaRallysPorSet /= pesoTotal
+                        mediasTime2.append([mediaPontos, mediaLevantamentos, mediaBloqueio, mediaRecepcoes, mediaRallysPorSet])
+
+                    escolha_randomizar = input("Deseja randomizar a partida? ('s' ou 'n') ")
+                    if escolha_randomizar == 's':
+                        partidas_avulsas_validas[escolha_partida - 1].SetPorSetRandomizado(mediasTime1, mediasTime2)
+                    else:
+                        partidas_avulsas_validas[escolha_partida - 1].SetPorSet(mediasTime1, mediasTime2)
                 else:
                     print("Escolha inválida.")
 
@@ -150,7 +233,7 @@ def menu_jogar_temporada(temporada):
                     print(f"{i}. {campeonato.nome}")
                 escolha_campeonato = int(input("Escolha o número do campeonato: "))
                 if 1 <= escolha_campeonato <= len(campeonatos_invalidos):
-                    menu_campeonato(campeonatos_invalidos[escolha_campeonato - 1])
+                    menu_campeonato(campeonatos_invalidos[escolha_campeonato - 1],temporada)
                 else:
                     print("Escolha inválida.")
 
@@ -164,7 +247,87 @@ def menu_jogar_temporada(temporada):
                     print(f"{i}. {partida.time1.nome} vs {partida.time2.nome}")
                 escolha_partida = int(input("Escolha o número da partida: "))
                 if 1 <= escolha_partida <= len(partidas_avulsas_invalidas):
-                    partidas_avulsas_invalidas[escolha_partida - 1].SetPorSet()
+                    mediasTime1 = []
+                    mediasTime2 = []
+                    index_Temporada = historico.Temporadas(temporada)
+
+                    for jogador in partidas_avulsas_invalidas[escolha_partida - 1].time1.elenco_atual:
+                        peso = 1
+                        pesoTotal = 0
+                        mediaPontos = 0
+                        mediaLevantamentos = 0
+                        mediaBloqueio = 0
+                        mediaRecepcoes = 0
+                        mediaRallysPorSet = 0
+                        if(historico.contar_rallys_do_jogador(jogador) == 0):
+                            jogador_base = random.choice([jogador_escolhido for jogador_escolhido in historico.Jogadores if jogador_escolhido.posicao == jogador.posicao])
+                            for i in range(index_Temporada, -1, -1):
+                                if historico.Temporadas[i].contar_rallys_do_jogador(jogador_base) != 0:
+                                    mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador_base))
+                                    pesoTotal += peso
+                                    peso /= 2
+                        else:
+                            for i in range(index_Temporada, -1, -1):
+                                if historico.Temporadas[i].contar_rallys_do_jogador(jogador) != 0:
+                                    mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador))
+                                    pesoTotal += peso
+                                    peso /= 2
+                        mediaPontos /= pesoTotal
+                        mediaLevantamentos /= pesoTotal
+                        mediaBloqueio /= pesoTotal
+                        mediaRecepcoes /= pesoTotal
+                        mediaRallysPorSet /= pesoTotal
+                        mediasTime1.append([mediaPontos, mediaLevantamentos, mediaBloqueio, mediaRecepcoes, mediaRallysPorSet])
+
+                    for jogador in partidas_avulsas_invalidas[escolha_partida - 1].time2.elenco_atual:
+                        peso = 1
+                        pesoTotal = 0
+                        mediaPontos = 0
+                        mediaLevantamentos = 0
+                        mediaBloqueio = 0
+                        mediaRecepcoes = 0
+                        mediaRallysPorSet = 0
+                        if(historico.contar_rallys_do_jogador(jogador) == 0):
+                            jogador_base = random.choice([jogador_escolhido for jogador_escolhido in historico.Jogadores if jogador_escolhido.posicao == jogador.posicao])
+                            for i in range(index_Temporada, -1, -1):
+                                if historico.Temporadas[i].contar_rallys_do_jogador(jogador_base) != 0:
+                                    mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                    mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador_base))
+                                    pesoTotal += peso
+                                    peso /= 2
+                        else:
+                            for i in range(index_Temporada, -1, -1):
+                                if historico.Temporadas[i].contar_rallys_do_jogador(jogador) != 0:
+                                    mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                    mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador))
+                                    pesoTotal += peso
+                                    peso /= 2
+                        mediaPontos /= pesoTotal
+                        mediaLevantamentos /= pesoTotal
+                        mediaBloqueio /= pesoTotal
+                        mediaRecepcoes /= pesoTotal
+                        mediaRallysPorSet /= pesoTotal
+                        mediasTime2.append([mediaPontos, mediaLevantamentos, mediaBloqueio, mediaRecepcoes, mediaRallysPorSet])
+
+                    escolha_randomizar = input("Deseja randomizar a partida? ('s' ou 'n') ")
+                    if escolha_randomizar == 's':
+                        partidas_avulsas_invalidas[escolha_partida - 1].SetPorSetRandomizado(mediasTime1, mediasTime2)
+                    else:
+                        partidas_avulsas_invalidas[escolha_partida - 1].SetPorSet(mediasTime1, mediasTime2)
                 else:
                     print("Escolha inválida.")
 
@@ -230,7 +393,7 @@ def criar_campeonato(temporada):
 
     print("Campeonato criado com sucesso!")
 
-def menu_campeonato(campeonato):
+def menu_campeonato(campeonato,temporada):
     while True:
         print("\nMenu do Campeonato:")
         print("1. Jogar o campeonato")
@@ -240,7 +403,59 @@ def menu_campeonato(campeonato):
         escolha = input("Escolha a opção desejada: ")
 
         if escolha == "1":
-            campeonato.JogarCampeonato()
+
+            mediasTimes = []
+            index_Temporada = historico.Temporadas.index(temporada)
+
+            for time in campeonato.TimesParticipantes:
+                mediasTime = []
+                for jogador in time.elenco_atual:
+                    peso = 1
+                    pesoTotal = 0
+                    mediaPontos = 0
+                    mediaLevantamentos = 0
+                    mediaBloqueio = 0
+                    mediaRecepcoes = 0
+                    mediaRallysPorSet = 0
+                    if(historico.contar_rallys_do_jogador(jogador) == 0):
+                        jogador_base = random.choice([jogador_escolhido for jogador_escolhido in historico.Jogadores if jogador_escolhido.posicao == jogador.posicao])
+                        for i in range(index_Temporada, -1, -1):
+                            if historico.Temporadas[i].contar_rallys_do_jogador(jogador_base) != 0:
+                                mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador_base))
+                                pesoTotal += peso
+                                peso /= 2
+                    else:
+                        for i in range(index_Temporada, -1, -1):
+                            if historico.Temporadas[i].contar_rallys_do_jogador(jogador) != 0:
+                                mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador) / historico.Temporadas[i].contar_rallys_do_jogador(jogador))
+                                mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador))
+                                pesoTotal += peso
+                                peso /= 2
+                    if(pesoTotal != 0):
+                        mediaPontos /= pesoTotal
+                        mediaLevantamentos /= pesoTotal
+                        mediaBloqueio /= pesoTotal
+                        mediaRecepcoes /= pesoTotal
+                        mediaRallysPorSet /= pesoTotal
+                    mediasTime.append([mediaPontos, mediaLevantamentos, mediaBloqueio, mediaRecepcoes, mediaRallysPorSet])
+                mediasTimes.append(mediasTime)
+
+            if campeonato.ClassificacaoTimes != []:
+                print("Esse campeonato já foi encerrado.")
+                break
+
+            escolha_randomizar = input("Deseja randomizar o campeonato? ('s' ou 'n') ")
+            if escolha_randomizar == 's':
+                campeonato.JogarCampeonatoRandomizado(mediasTimes)
+            else:
+                campeonato.JogarCampeonato(mediasTimes)
         elif escolha == "2":
             campeonato.criarProximaFase()
         elif escolha == "0":
@@ -651,16 +866,19 @@ def resgatar_average_time(times):
     return resultados
 
 def exibe_ranking_jogador(jogadores, averages, pontos, levantamentos, recepcoes, bloqueios, rallys_jogados):
-    print(f"{'Posição':<8}{'Jogador':<20}{'Average':<10}{'Pontos':<10}{'Levantamentos':<15}{'Recepções':<15}{'Bloqueios':<10}{'Rallys Jogados':<15}")
-    print("-" * 90)
-    for i, jogador in enumerate(jogadores, start=1):
-        print(f"{i:<8}{jogador.nome:<20}{averages[i-1]:<10.2f}{pontos[i-1]:<10}{levantamentos[i-1]:<15}{recepcoes[i-1]:<15}{bloqueios[i-1]:<10}{rallys_jogados[i-1]:<15}")
+    sorted_jogadores = sorted(zip(jogadores, averages, pontos, levantamentos, recepcoes, bloqueios, rallys_jogados), key=lambda x: x[1], reverse=True)
+    print(f"{'Posição':<12}{'Jogador':<22}{'Average':<10}{'Pontos':<9}{'Levantamentos':<14}{'Recepções':<14}{'Bloqueios':<14}{'Rallys Jogados':<14}")
+    print("-" * 100)
+    for i, (jogador,avg,pts,lev,rec,blo,rall) in enumerate(sorted_jogadores, start=1):
+        print(f"{i:<12}{jogador.nome:<22}{avg:<10.2f}{pts:<9}{lev:<14}{rec:<14}{blo:<14}{rall:<14}")
+
 
 def exibe_ranking_times(times, averages):
+    sorted_times = sorted(zip(times, averages), key=lambda x: x[1], reverse=True)
     print(f"{'Posição':<8}{'Time':<20}{'Average':<10}")
     print("-" * 40)
-    for i, time in enumerate(times, start=1):
-        print(f"{i:<8}{time.nome:<20}{averages[i-1]:<10.2f}")
+    for i, (time,avg) in enumerate(sorted_times, start=1):
+        print(f"{i:<8}{time.nome:<20}{avg:<10.2f}")
 
 def filtrar_jogadores(jogadores):
     categorias = set(jogador.categoria for jogador in jogadores)

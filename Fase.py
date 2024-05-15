@@ -47,6 +47,18 @@ class Fase:
             total_rallys += partida.contar_rallys_do_jogador(jogador)
         return total_rallys
     
+    def contar_rallys_por_set_do_jogador(self, jogador):
+        total_rallys_por_set = 0
+        i = 0
+        for partida in self.partidas:
+            if partida.vencedor != None:
+                total_rallys_por_set += partida.contar_rallys_por_set_do_jogador(jogador)
+                ++i
+        if i!= 0:
+            return total_rallys_por_set/i
+        else:
+            return 0
+
     def jogadorAverageFase(self, jogador):
         total_pontos = self.calcularPontosJogadorFase(jogador)
         total_recepcoes = self.calcularRecepcoesJogadorFase(jogador)

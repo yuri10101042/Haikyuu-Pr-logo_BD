@@ -21,7 +21,6 @@ class Temporada:
         self.jogosAvulsosInvalidos.append(jogoAvulsoInvalido)
 
     def calcularPontosJogadorTemporada(self, jogador):
-        print("teste")
         total_pontos = 0
         for campeonato in self.campeonatosValidos:
             total_pontos += campeonato.calcularPontosJogadorCampeonato(jogador)
@@ -62,6 +61,20 @@ class Temporada:
             total_rallys += partida.contar_rallys_do_jogador(jogador)
         return total_rallys
     
+    def contar_rallys_por_set_do_jogador(self, jogador):
+        total_rallys_por_set = 0
+        i = 0
+        for campeonato in self.campeonatosValidos:
+            if campeonato.ClassificacaoTimes != []:
+                total_rallys_por_set += campeonato.contar_rallys_por_set_do_jogador(jogador)
+                i+=1
+        for partida in self.jogosAvulsosValidos:
+            if partida.vencedor != None:
+                total_rallys_por_set += partida.contar_rallys_por_set_do_jogador(jogador)
+                i+=1
+        return total_rallys_por_set/i
+
+
     def jogadorAverageTemporada(self, jogador):
         total_pontos = self.calcularPontosJogadorTemporada(jogador)
         total_recepcoes = self.calcularRecepcoesJogadorTemporada(jogador)
