@@ -2,10 +2,11 @@ from JogadorVolei import JogadorVolei
 from Modalidade import Modalidade
 
 class TimeVolei:
-    def __init__(self, nome, pais, regiao, categoria):
+    def __init__(self, nome, pais, regiao, cidade, categoria):
         self.nome = nome
         self.pais = pais
         self.regiao = regiao
+        self.cidade = cidade
         self.categoria = categoria
         self.elenco_atual = []
 

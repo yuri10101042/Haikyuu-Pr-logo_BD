@@ -1483,8 +1483,9 @@ def consultar_time(time):
     print("1. Nome")
     print("2. País")
     print("3. Região")
-    print("4. Modalidade")
-    print("5. Elenco Atual")
+    print("4. Cidade")
+    print("5. Modalidade")
+    print("6. Elenco Atual")
 
     escolha_atributo = input("\nEscolha o número do atributo para consultar: ")
 
@@ -1501,8 +1502,10 @@ def consultar_time(time):
     elif escolha_atributo == 3:
         print(f"\nRegião do time: {time.regiao}")
     elif escolha_atributo == 4:
-        print(f"\nCategoria do time: {time.categoria}")
+        print(f"\nCidade do time: {time.cidade}")
     elif escolha_atributo == 5:
+        print(f"\nCategoria do time: {time.categoria}")
+    elif escolha_atributo == 6:
         consultar_jogadores(time.elenco_atual)
     else:
         print("\nAtributo inválido. Voltando ao menu anterior.\n")
@@ -1528,7 +1531,7 @@ def consultar_times(lista_times):
 
 def consultar_jogador(jogador):
     print("\nAtributos disponíveis para consulta:")
-    atributos = ["nome", "idade", "altura", "regiao_nascimento", "pais_nascimento", "posicao", "maoDominante", "camisaNumero", "genero"]
+    atributos = ["nome", "idade", "altura", "regiao_nascimento", "pais_nascimento", "cidade_nascimento", "posicao", "maoDominante", "numeroCamisa", "genero"]
     for j, atributo in enumerate(atributos, start=1):
         print(f"{j}. {atributo.capitalize()}")
 
@@ -1586,13 +1589,21 @@ def menu_edicao_normal():
     while True:
         print("\nEscolha a opção desejada:")
         print("1- Criar Jogador")
-        print("2- Criar Time")
-        print("3- Inserir Jogador em Time")
-        print("4- Criar Modalidade")
-        print("5- Remover Jogador de Time")
-        print("6- Criar Jogador por String")  
-        print("7- Criar Time vazio por String")  
-        print("8- Criar Time com Jogadores por String")  
+        print("2- Criar Jogador por String")
+        print("3- Criar Time")
+        print("4- Criar Time por String")
+        print("5- Criar Time com Jogadores por String")
+        print("6- Criar Modalidade")
+        print("7- Inserir Jogador em Time")
+        print("8- Remover Jogador de Time")
+        print("9- Preencher Time com Jogadores Randomizados")
+        print("10- Excluir Jogador permanentemente")
+        print("11- Excluir Time permanentemente")
+        print("12- Excluir Modalidade permanentemente")
+        print("13- Passar idade dos Jogadores")
+        print("14- Passar categoria ou aposentar")
+        print("15- Aumentar altura dos Jogadores")
+        print("16- Preencher Times Colegiais com Jogadores novos randomizados")
         print("0- Voltar ao Menu Principal")
 
         escolha_edicao_normal = input("Digite o número da opção desejada: ")
@@ -1600,27 +1611,467 @@ def menu_edicao_normal():
         if escolha_edicao_normal == "1":
             criar_jogador()
         elif escolha_edicao_normal == "2":
-            criar_time()
-        elif escolha_edicao_normal == "3":
-            inserir_jogador_em_time()
-        elif escolha_edicao_normal == "4":
-            criar_modalidade()
-        elif escolha_edicao_normal == "5":
-            remover_jogador_de_time()
-        elif escolha_edicao_normal == "6":
             string_jogador = input(f"Digite a String para criar o Jogador:")
             criar_jogador_por_string(string_jogador)
-        elif escolha_edicao_normal == "7":
+        elif escolha_edicao_normal == "3":
+            criar_time()
+        elif escolha_edicao_normal == "4":
             string_time = input(f"Digite a String para criar o Time:")
             criar_time_por_string(string_time)
-        elif escolha_edicao_normal == "8":
+        elif escolha_edicao_normal == "5":
             string_time = input(f"Digite a String para criar o Time:")
             string_jogadores = input(f"Digite a String para criar os Jogadores:")
             criar_time_e_jogadores_por_string(string_time, string_jogadores)
+        elif escolha_edicao_normal == "6":
+            criar_modalidade()
+        elif escolha_edicao_normal == "7":
+            inserir_jogador_em_time()
+        elif escolha_edicao_normal == "8":
+            remover_jogador_de_time()
+        elif escolha_edicao_normal == "9":
+            preencher_time_com_jogadores_randomizados()
+        elif escolha_edicao_normal == "10":
+            excluir_jogador_permanentemente()
+        elif escolha_edicao_normal == "11":
+            excluir_time_permanentemente()
+        elif escolha_edicao_normal == "12":
+            excluir_modalidade_permanentemente()
+        elif escolha_edicao_normal == "13":
+            passar_idade_dos_jogadores()
+        elif escolha_edicao_normal == "14":
+            passar_categoria_ou_aposentar()
+        elif escolha_edicao_normal == "15":
+            aumentar_altura_dos_jogadores()
+        elif escolha_edicao_normal == "16":
+            preencher_times_colegiais_com_jogadores_novos_randomizados()
         elif escolha_edicao_normal == "0":
             break
         else:
             print("\nOpção inválida. Tente novamente.\n")
+
+def preencher_times_colegiais_com_jogadores_novos_randomizados():
+    for time in historico.Times:
+        if time.categoria == "Colegial":
+    
+            escolha = historico.Times.index(time) + 1
+
+            if historico.Times[escolha-1].categoria == "Colegial":
+                prob_pais = 99
+                prob_regiao = 85
+                prob_cidade = 75
+            elif historico.Times[escolha-1].categoria == "Universitário":
+                prob_pais = 95
+                prob_regiao = 75
+                prob_cidade = 60
+            elif historico.Times[escolha-1].categoria == "Profissional":
+                prob_pais = 85
+                prob_regiao = 60
+                prob_cidade = 40
+
+            if escolha > 0 and escolha <= len(historico.Times):
+                paisERegiaoECidade, paisENomesESobrenomes = gerarListas()
+                pais_provavel = historico.Times[escolha-1].pais
+                regiao_provavel = historico.Times[escolha-1].regiao
+                cidade_provavel = historico.Times[escolha-1].cidade
+                while len(historico.Times[escolha-1].elenco_atual) < 8:
+                    probabilidade = random.randint(0,100)
+                    if probabilidade <= prob_pais:
+                        pais_escolhido = pais_provavel
+                        probabilidade = random.randint(0,100)
+                        if probabilidade <= prob_regiao:
+                            regiao_escolhida = regiao_provavel
+                            probabilidade = random.randint(0,100)
+                            if probabilidade <= prob_cidade:
+                                cidade_escolhida = cidade_provavel
+                            else:
+                                cidade_escolhida = random.choice([cidade for cidade in [tupla[1] for tupla in [tupla[1] for tupla in paisERegiaoECidade if tupla[0] == pais_escolhido][0] if tupla[0] == regiao_escolhida][0] if cidade != cidade_provavel])
+                        else:
+                            regiao_escolhida = random.choice([tupla[0] for tupla in [tupla[1] for tupla in paisERegiaoECidade if tupla[0] == pais_escolhido][0] if tupla[0] != regiao_provavel])
+                            cidade_escolhida = random.choice([cidade for cidade in [tupla[1] for tupla in [tupla[1] for tupla in paisERegiaoECidade if tupla[0] == pais_escolhido][0] if tupla[0] == regiao_escolhida][0]])
+                    else:
+                        pais_escolhido = random.choice([tupla[0] for tupla in paisERegiaoECidade if tupla[0] != pais_provavel])
+                        regiao_escolhida = random.choice([tupla[0] for tupla in [tupla[1] for tupla in paisERegiaoECidade if tupla[0] == pais_escolhido][0]])
+                        cidade_escolhida = random.choice([cidade for cidade in [tupla[1] for tupla in [tupla[1] for tupla in paisERegiaoECidade if tupla[0] == pais_escolhido][0] if tupla[0] == regiao_escolhida][0]])
+
+                    sexo_escolhido = random.choice(["Homem","Mulher"])
+
+                    if sexo_escolhido == "Homem":
+                        nome_escolhido = random.choice([nome for nome in [paisNomeSobrenome[1] for paisNomeSobrenome in paisENomesESobrenomes if paisNomeSobrenome[0] == pais_escolhido][0]])
+                    else:
+                        nome_escolhido = random.choice([nome for nome in [paisNomeSobrenome[2] for paisNomeSobrenome in paisENomesESobrenomes if paisNomeSobrenome[0] == pais_escolhido][0]])
+
+                    sobrenome_escolhido = random.choice([sobrenome for sobrenome in [paisNomeSobrenome[3] for paisNomeSobrenome in paisENomesESobrenomes if paisNomeSobrenome[0] == pais_escolhido][0]])
+
+                    nomeCompleto_escolhido = nome_escolhido + " " + sobrenome_escolhido
+
+                    while True:
+                        sair = True
+                        posicao_escolhida = random.choice(["Ponteiro","Oposto","Levantador","Central","Líbero"])
+                        for jogador_elenco in historico.Times[escolha-1].elenco_atual:
+                            if jogador_elenco.posicao == posicao_escolhida:
+                                probabilidade = probabilidade = random.randint(0,100)
+                                if posicao_escolhida == "Ponteiro":
+                                    if probabilidade <= 70:
+                                        sair = False
+                                        break
+                                    else:
+                                        break
+                                else:
+                                    if probabilidade <= 95:
+                                        sair = False
+                                        break
+                                    else:
+                                        break
+                            else:
+                                continue
+                        if sair:
+                            break
+                        
+                    if historico.Times[escolha-1].categoria == "Colegial":
+                        idade_escolhida = 15
+                    if historico.Times[escolha-1].categoria == "Universitário":
+                        idade_escolhida = random.choice([18,19,20,21])
+                    if historico.Times[escolha-1].categoria == "Profissional":
+                        numeros = [i for i in range(22, 41)]
+                        probabilidades = [1 / (i - 21) for i in numeros]
+                        idade_escolhida = random.choices(numeros, weights=probabilidades, k=1)[0]
+
+                    if idade_escolhida == 15:
+                        if sexo_escolhido == "Homem":
+                            alturas = [round(numero/100,2) for numero in range(151, 201)]
+                        if sexo_escolhido == "Mulher":
+                            alturas = [round(numero/100,2) for numero in range(151, 191)]
+                    if idade_escolhida == 16:
+                        if sexo_escolhido == "Homem":
+                            alturas = [round(numero/100,2) for numero in range(151, 206)]
+                        if sexo_escolhido == "Mulher":
+                            alturas = [round(numero/100,2) for numero in range(151, 191)]
+                    if idade_escolhida == 17:
+                        if sexo_escolhido == "Homem":
+                            alturas = [round(numero/100,2) for numero in range(151, 211)]
+                        if sexo_escolhido == "Mulher":
+                            alturas = [round(numero/100,2) for numero in range(151, 191)]
+                    if idade_escolhida > 17:
+                        if sexo_escolhido == "Homem":
+                            alturas = [round(numero/100,2) for numero in range(151, 216)]
+                        if sexo_escolhido == "Mulher":
+                            alturas = [round(numero/100,2) for numero in range(151, 192)]
+
+                    if posicao_escolhida == "Líbero":
+                        probabilidades = [1 / (altura*altura) for altura in alturas]
+                    elif posicao_escolhida == "Central":
+                        probabilidades = [altura*altura for altura in alturas]
+                    else:
+                        probabilidades = alturas
+
+                    altura_escolhida = random.choices(alturas, weights=probabilidades, k=1)[0]
+
+                    maoDominante_escolhida = random.choices(["Destro","Canhoto","Ambidestro"], weights=[0.7,0.2,0.1], k=1)[0]
+
+                    numeroCamisa_escolhida = random.choice([numero for numero in range(1, 100)])
+
+                    categoria_escolhida = historico.Times[escolha-1].categoria
+
+                    novo_jogador = JogadorVolei(nomeCompleto_escolhido, idade_escolhida, altura_escolhida, cidade_escolhida, regiao_escolhida, pais_escolhido, posicao_escolhida, categoria_escolhida, maoDominante_escolhida, numeroCamisa_escolhida, sexo_escolhido)
+                    historico.Jogadores.append(novo_jogador)
+                    historico.Times[escolha-1].adicionar_jogador(novo_jogador)
+
+def aumentar_altura_dos_jogadores():
+    for jogador in historico.Jogadores:
+        if jogador.genero == "Homem":
+            if jogador.idade in [16,17,18]:
+                jogador.altura += random.choice([0.01,0.02,0.03,0.04,0.05])
+        if jogador.genero == "Mulher":
+            if jogador.idade == 18:
+                jogador.altura += 0.01
+
+
+
+def passar_categoria_ou_aposentar():
+    for jogador in historico.Jogadores:
+        if jogador.categoria == "Colegial" and jogador.idade == 18:
+            jogador.categoria = "Universitário"
+            for time in historico.Times:
+                if jogador in time.elenco_atual:
+                    time.remover_jogador(jogador)
+            print("Jogador "+jogador.nome+" passou para Universitário e está sem time.")
+        if jogador.categoria == "Universitário" and jogador.idade == 22:
+            jogador.categoria = "Profissional"
+            for time in historico.Times:
+                if jogador in time.elenco_atual:
+                    time.remover_jogador(jogador)
+            print("Jogador "+jogador.nome+" passou para Profissional e está sem time.")
+        if jogador.categoria == "Profissional" and jogador.idade > 35:
+            probabilidade = 60 + ((jogador.idade-35)*5)
+            if random.randint(0,100) <= probabilidade:
+                jogador.categoria = "Aposentadoria"
+                for time in historico.Times:
+                    if jogador in time.elenco_atual:
+                        time.remover_jogador(jogador)
+                print("Jogador "+jogador.nome+f" se aposentou {jogador.idade} anos.")
+            
+
+def passar_idade_dos_jogadores():
+    for jogador in historico.Jogadores:
+        jogador.idade += 1
+
+def gerarListas():
+
+    nomesMStringBrasil = "João, José, Antônio, Francisco, Carlos, Luiz, Paulo, Marcos, Miguel, Otávio, André, Guilherme, Gabriel, Felipe, Rafael, Leonardo, Matheus, Lucas, Daniel, Vinícius, Diego, Thiago, Roberto, Eduardo, César, Bruno, Alex, Fernando, Gustavo, Marcelo, Rodrigo, Victor, Allan, Júlio, Nathan, William, Ricardo, Caio, Ivan, Arthur, Tiago, Renato, Samuel, Édson, Heitor, Adriano, Cristiano, Davi, Igor, Fábio, Hudson, Jonas, Leandro, Nathan, Murilo, Pedro, Raul, Sidney, Valter, Wallace, Xavier, Yuri, Zélio, Abner, Bernardo, Dênis, Elton, Fabrício, Geovane, Henrique, Ícaro, Junior, Kauã, Leônidas, Marcos, Nícolas, Otávio, Pedro, Quirino, Rafael, Saulo, Teodoro, Uílson, Vagner, Wendel, Xavier, Yago, Zeca, Ademir, Benício, Ciro, Dionísio, Edson, Fabiano, Genaro, Henrique, Ismael, Júlio, Kelson, Lázaro"
+    nomesFStringBrasil = "Maria, Ana, Francisca, Antônia, Adriana, Juliana, Márcia, Patrícia, Luciana, Sandra, Camila, Mariana, Andréia, Paula, Letícia, Aline, Fernanda, Tatiane, Carla, Bruna, Jéssica, Priscila, Silvana, Viviane, Isabela, Renata, Raquel, Sueli, Débora, Gisele, Vanessa, Angélica, Beatriz, Cátia, Elisa, Fabiana, Helena, Ingrid, Kátia, Larissa, Monique, Natália, Patrícia, Roberta, Taís, Valéria, Yara, Zilda, Adriane, Bianca, Cintia, Denise, Elen, Fabíola, Graziela, Hellen, Inês, Janaína, Kelly, Lúcia, Marisa, Neide, Olívia, Poliana, Quézia, Rafaela, Simone, Tânia, Ursula, Verônica, Wanda, Xuxa, Yolanda, Zoraide, Alessandra, Betina, Clarice, Daniela, Estela, Flávia, Gabriela, Helena, Ivone, Jaqueline, Keila, Laila, Marlene, Nádia, Orquídea, Priscila, Quésia, Renata, Sônia, Tânia, Úrsula, Vanessa, Wanessa, Ximena, Yasmim, Zuleide"
+    sobrenomesStringBrasil = "Santos, Costa, Fernandes, Lima, Araújo, Oliveira, Souza, Pereira, Silva, Rodrigues, Almeida, Nascimento, Carvalho, Gomes, Martins, Castro, Ferreira, Alves, Azevedo, Ribeiro, Gonçalves, Barbosa, Freitas, Marques, Batista, Jesus, Rocha, Melo, Mendes, Vieira, Leite, Campos, Cardoso, Teixeira, Cunha, Duarte, Monteiro, Correia, Moraes, Moreira, Dias, Medeiros, Bezerra, Neves, Cavalcanti, Nogueira, Ramos, Correa, Nunes, Sousa, Fonseca, Pinto, Viana, Andrade, Coelho, Pereira, Guimarães, Paiva, Santana, Veloso, Tavares, Câmara, Brito, Brandão, Lima, Cunha, Duarte, Alencar, Lopes, Castro, Caldeira, Abreu, Torres, Pereira, Queiroz, Vasconcelos, Vargas, Xavier, Farias, Figueiredo, Vasquez, Lira, Lacerda, Gouveia, Duarte, Cunha, Alves, Carvalho, Cardoso, Fonseca, Pereira, Menezes, Dantas, Guerra, Rios, Teles"
+    regioesECidadesStringsBrasil = [["Sudeste","São Paulo, Rio de Janeiro, Belo Horizonte, Guarulhos, Campinas, São Gonçalo, Nova Iguaçu, São Bernardo do Campo, Osasco, Santo André, Ribeirão Preto, Sorocaba, Juiz de Fora, São José dos Campos, Santos, São José do Rio Preto, Contagem, Mogi das Cruzes, Jundiaí, Niterói"],
+                        ["Nordeste","Salvador, Fortaleza, Recife, São Luís, Natal, Teresina, João Pessoa, Maceió, Aracaju, Feira de Santana, Campina Grande, Olinda, Caruaru, Mossoró, Juazeiro do Norte, Caucaia, Petrolina, Vitória da Conquista, Marabá, Ilhéus"],
+                        ["Sul","Curitiba, Porto Alegre, Joinville, Londrina, Florianópolis, Caxias do Sul, Ponta Grossa, Novo Hamburgo, São José dos Pinhais, Canoas, Blumenau, Pelotas, Cascavel, Maringá, Santa Maria, Foz do Iguaçu, Criciúma, Passo Fundo, Araucária, Rio Grande"],
+                        ["Centro-Oeste","Brasília, Goiânia, Campo Grande, Cuiabá, Aparecida de Goiânia, Anápolis, Várzea Grande, Luziânia, Trindade, Rio Verde, Sinop, Formosa, Águas Lindas de Goiás, Itumbiara, Dourados, Palmas, Catalão, Gurupi, Ponta Porã, Jataí"],
+                        ["Norte","Manaus, Belém, Porto Velho, Rio Branco, Macapá, Boa Vista, Santarém, Ananindeua, Marabá, Parauapebas, Altamira, Itaituba, Castanhal, Abaetetuba, Tucuruí, Parintins, Cametá, Marituba, Santarém, Parintins"]]
+
+
+    nomesMStringJapao = "Haruto, Ren, Yuto, Sora, Riku, Haruki, Takumi, Kaito, Daiki, Ryota, Shota, Ryoma, Yuma, Haru, Hayato, Yuki, Shun, Kai, Tatsuya, Hiroki, Ryo, Kota, Taichi, Kazuki, Keita, Sho, Itsuki, Kosei, Subaru, Yusei, Sosuke, Kento, Naoki, Yudai, Koki, Yuji, Taiga, Toma, Renji, Hibiki, Ryunosuke, Takeru, Hayate, Takashi, Akira, Hiroshi, Satoshi, Kenji, Masaru, Yusuke, Jin, Yuichi, Shogo, Renzo, Tomoya, Hideki, Shuji, Ryuki, Tsuyoshi, Yoshito, Daisuke, Shoma, Genki, Yukihiro, Kazuhiro, Tetsuya, Makoto, Yoshinori, Kiyoshi, Toshiro, Naoto, Shinichi, Noboru, Akihiko, Katsuhiko, Takayuki, Teruo, Hidetoshi, Toshiaki, Seiji, Shingo, Tsubasa, Shintaro, Kohei, Mamoru, Kaito, Yutaka, Takao, Takumi, Hirokazu, Tadashi, Atsushi"
+    nomesFStringJapao = "Yui, Sakura, Hina, Aoi, Haruka, Yuna, Riko, Nanami, Misaki, Mei, Sora, Akari, Ayaka, Nao, Yuka, Rina, Koharu, Mio, Yui, Rio, Ayumi, Hinata, Miku, Yuna, Ami, Honoka, Yuina, Yume, Anzu, Arisa, Emi, Mana, Miyu, Suzuka, Yurika, Kokoro, Risa, Natsumi, Aika, Hikari, Kaede, Saki, Yuzu, Runa, Momoka, Haru, Himari, Kanon, Aya, Kaho, Sayuri, Satsuki, Yuiko, Nozomi, Kana, Reina, Yuriko, Asuka, Marin, Chiharu, Fuka, Ayano, Marin, Shiori, Mirai, Nanako, Riko, Yurie, Sakura, Ai, Hinako, Nana, Sayaka, Mirei, Yurika, Yua, Airi, Yume, Yuuka, Haruna, Konomi, Suzu, Miyuki, Hinako, Ayame, Yurina, Mana, Hinata, Yuri, Kozue, Nanami, Yuri, Kanae, Yua, Moeka, Hikaru, Mao, Yui, Hinata, Yuriko"
+    sobrenomesStringJapao = "Sato, Suzuki, Takahashi, Tanaka, Watanabe, Ito, Yamamoto, Nakamura, Kobayashi, Kato, Yoshida, Yamada, Sasaki, Yamaguchi, Saito, Matsumoto, Inoue, Kimura, Shimizu, Hayashi, Sakamoto, Ishikawa, Yamazaki, Fujita, Nakajima, Kajiwara, Hasegawa, Ogawa, Murakami, Kondo, Fujimoto, Takagi, Goto, Kaneko, Shibata, Morita, Endo, Aoki, Ikeda, Fujiwara, Wada, Maeda, Nakano, Harada, Oshima, Morimoto, Matsui, Sugiyama, Nishimura, Ota, Abe, Miura, Ueda, Kojima, Asano, Taniguchi, Maruyama, Imai, Ogasawara, Komatsu, Ono, Maeda, Nagai, Watanabe, Okamoto, Suzuki, Kimura, Kobayashi, Kato, Yoshida, Yamamoto, Nakamura, Yamada, Sasaki, Yamaguchi, Tanaka, Matsumoto, Inoue, Hayashi, Shimizu, Kimura, Takahashi, Kudo, Onishi, Nishida, Shibata, Saito, Ikeda, Ando, Kondo, Watanabe, Ito, Morita, Sato, Takahashi, Nakamura, Suzuki, Tanaka, Yamamoto, Abe, Matsuda, Kojima, Kato, Yamada, Nakamura, Hayashi, Yamamoto, Sato, Suzuki, Tanaka, Watanabe, Ito"
+    regioesECidadesStringsJapao = [["Tohoku","Sendai, Aomori, Akita, Morioka, Fukushima, Yamagata, Hachinohe, Koriyama, Iwaki, Hanamaki, Fukushima, Hirosaki, Tsuruoka, Aizuwakamatsu, Yamagata, Odate, Yamagata"],
+                        ["Kanto","Tóquio, Yokohama, Chiba, Saitama, Kawasaki, Sagamihara, Koshigaya, Kawaguchi, Tachikawa, Funabashi, Machida, Yokosuka, Ichikawa, Nishinomiya, Kawagoe, Asaka"],
+                        ["Kinki","Osaka, Kyoto, Kobe, Sakai, Himeji, Nara, Wakayama, Amagasaki, Takarazuka, Itami, Kishiwada, Neyagawa, Toyonaka, Ikeda, Matsubara, Suita"],
+                        ["Hokkaido","Sapporo, Asahikawa, Hakodate, Kushiro, Tomakomai, Obihiro, Kitami, Otaru, Abashiri, Nemuro, Iwamizawa, Chitose, Rumoi, Wakkanai, Muroran, Bibai"],
+                        ["Chubu","Nagoya, Hamamatsu, Shizuoka, Toyohashi, Gifu, Fukui, Matsumoto, Okazaki, Toyota, Suzuka, Kofu, Tsu, Numazu, Shizuoka, Toyama, Nagano, Kanazawa"],
+                        ["Shikoku","Matsuyama, Takamatsu, Tokushima, Kochi, Uwajima, Marugame, Niihama, Saijo"],
+                        ["Chugoku","Hiroshima, Okayama, Matsue, Tottori, Izumo, Shimane, Yamaguchi, Hofu, Onomichi, Fukuyama"],
+                        ["Kyushu","Fukuoka, Kitakyushu, Kumamoto, Nagasaki, Kagoshima, Oita, Miyazaki, Saga, Kurume, Nagoya"]]
+
+
+
+    nomesMStringItalia = "Giuseppe, Francesco, Marco, Lorenzo, Matteo, Giovanni, Luca, Antonio, Andrea, Leonardo, Davide, Simone, Pietro, Filippo, Vincenzo, Emanuele, Raffaele, Federico, Carlo, Enrico, Stefano, Salvatore, Giorgio, Paolo, Michele, Alessio, Angelo, Daniele, Vittorio, Massimo, Tommaso, Gabriele, Mauro, Domenico, Piero, Bruno, Gianluca, Renato, Enzo, Edoardo, Luigi, Sergio, Luciano, Emilio, Aldo, Franco, Ruggero, Alberto, Rocco, Giacomo, Pierluigi, Fabrizio, Ettore, Giordano, Nunzio, Fausto, Gianni, Nino, Gaetano, Renzo, Sandro, Gino, Umberto, Arturo, Ottavio, Tiziano, Dante, Ugo, Amerigo, Marcello, Lucio, Mario, Valentino, Giancarlo, Silvio, Orazio, Eligio, Fulvio, Tullio, Onofrio, Remo, Settimio, Teodoro"
+    nomesFStringItalia = "Sofia, Chiara, Alessia, Giulia, Martina, Sara, Elisa, Alice, Laura, Valentina, Francesca, Greta, Gaia, Maria, Giuliana, Veronica, Giada, Elena, Aurora, Lucia, Roberta, Anna, Eleonora, Serena, Noemi, Valeria, Ilaria, Camilla, Emma, Viola, Caterina, Irene, Federica, Simona, Marta, Melania, Paola, Benedetta, Linda, Flavia"
+    sobrenomesStringItalia = "Rossi, Russo, Ferrari, Esposito, Bianchi, Romano, Colombo, Ricci, Marino, Greco, Bruno, Gallo, Conti, De Luca, Mancini, Costa, Giordano, Rizzo, Lombardi, Moretti, Barbieri, Fontana, Santoro, Mariani, Rinaldi, Caruso, Ferrara, Galli, Martini, Leone, Longo, Gatti, Testa, Vitale, Marchetti, Messina, Monti, Parisi, De Angelis, Palumbo, Coppola, Marini, Ferraro, Orlando, Silvestri, Serra, Riccardi, Farina, Rizzi, Montanari, Fabbri, Neri, Moro, Fiore, De Rosa, Ferri, Pellegrini, Giannini, Grasso, Sala, Donati, Napolitano, Riva, Basile, Bernardi, Sacco, D’Angelo, Gentile, Morelli, Caputo, De Santis, Valentini, Guerra, Bellini, Pellegrino, D’Agostino, Palmieri, Rossetti"
+    regioesECidadesStringsItalia = [["Centrale","Roma, Florença, Perúgia, Siena, Pisa, Arezzo, Grosseto, Livorno, Lucca, Ancona, Ascoli Piceno, Pescara, Terni, Rieti, Viterbo, Pesaro, Foligno, Città di Castello, Spoleto, Orvieto"],
+                        ["Settentrionale","Milão, Turim, Gênova, Bolonha, Veneza, Verona, Trieste, Pádua, Brescia, Ferrara, Parma, Mântua, Treviso, Udine, Vicenza, Novara, Como, Asti, Monza, Ravenna"],
+                        ["Meridional","Nápoles, Salerno, Bari, Taranto, Catanzaro, Reggio Calabria, Lecce, Cosenza, Foggia, Matera, Campobasso, Potenza, Brindisi, Barletta, Andria, Trani, Avellino, Benevento, Caserta, Crotone, Ragusa, Vibo Valentia, Terni, Lamezia Terme, Pescara, Ancona, Aosta, Teramo, Fermo, Ascoli Piceno, Macerata, Campobasso, Isernia, Rieti, Viterbo"],
+                        ["Insular","Palermo, Catânia, Messina, Siracusa, Trapani, Agrigento, Caltanissetta, Ragusa, Enna, Cagliari, Sassari, Olbia, Alghero, Nuoro, Oristano, Carbonia, Iglesias"]]
+
+
+
+    nomesMStringEUA = "Liam, Noah, William, James, Oliver, Benjamin, Elijah, Lucas, Mason, Logan, Matthew, Jack, Sebastian, Aiden, Jacob, Christopher, Michael, Andrew, Daniel, Henry, Joshua, Ethan, Joseph, Alexander, Samuel, David, Carter, Wyatt, Jayden, John, Owen, Dylan, Luke, Gabriel, Anthony, Isaac, Grayson, Jack, Julian, Levi, Jonathan, Adam, Connor, Eli, Lincoln, Aaron, Charles, Hudson, Tomas, Chase, Ryan, Nathan, Caleb, Christian, Hunter, Thomas, Jackson, Jeremiah, Colton, Easton, Evan, Jordan, Austin, Xavier, Cameron, Kayden, Carlos, Diego, Blake, Oliver, Cole, Jaden, Bentley, Luis, Maximus, Alexander, Brandon, Dominic, Levi, Ian, Jose, Jake, Victor, Mason, Carlos, Adrian, Elias, Leo, Brayden, Brian, Joel, Sean, Peter, Lawrence, Asher, Nathaniel, Beckett, Timothy, Kevin, Isaiah, Stephen, Edward, Miles, Nolan"
+    nomesFStringEUA = "Emma, Olivia, Ava, Isabella, Sophia, Mia, Charlotte, Amelia, Harper, Evelyn, Abigail, Emily, Elizabeth, Avery, Sofia, Ella, Madison, Scarlett, Victoria, Chloe, Penelope, Luna, Grace, Layla, Riley, Zoey, Lily, Hannah, Aria, Addison, Eleanor, Natalie, Lillian, Aubrey, Ellie, Stella, Aurora, Hailey, Aria, Ellie, Hannah, Leah, Violet, Zoe, Hazel, Lucy, Lillian, Anna, Kate, Claire, Samantha, Nora, Lila, Everly, Maya, Paisley, Elena, Emery, Madelyn, Adeline, Katherine, Aubree, Adalynn, Audrey, Brooklyn, Bella, Savannah, Camila, Skylar, Kylie, Eva, Leilani, Genesis, Aaliyah, Madeline, Josephine, Isla, Eliana, Josie, Willow, Lydia, Piper, Natalia, Elise, Cora, Emilia, Jade, Valentina, Reagan, Quinn, Catherine, Evelina, Naomi, Brielle, Ariana, Kayla, Ruby, Clementine"
+    sobrenomesStringEUA = "Smith, Johnson, Williams, Jones, Brown, Davis, Miller, Wilson, Moore, Taylor, Anderson, Thomas, Jackson, White, Harris, Martin, Thompson, Garcia, Martinez, Robinson, Clark, Rodriguez, Lewis, Lee, Walker, Hall, Allen, Young, Hernandez, King, Wright, Lopez, Hill, Scott, Green, Adams, Baker, Gonzalez, Nelson, Carter, Mitchell, Perez, Roberts, Turner, Phillips, Campbell, Parker, Evans, Edwards, Collins, Stewart, Sanchez, Morris, Rogers, Reed, Cook, Morgan, Bell, Murphy, Bailey, Rivera, Cooper, Richardson, Cox, Howard, Ward, Torres, Peterson, Gray, Ramirez, James, Watson, Brooks, Kelly, Sanders, Price, Bennett, Wood, Barnes, Ross, Henderson, Coleman, Jenkins, Perry, Powell, Long, Patterson, Hughes, Flores, Washington, Butler, Simmons, Foster, Gonzales, Bryant, Alexander, Russell, Griffin, Diaz, Hayes, Myers, Ford, Hamilton, Graham, Sullivan, Wallace, Woods, Cole, West, Jordan, Owens, Reynolds, Fisher, Ellis, Harrison, Gibson"
+    regioesECidadesStringsEUA = [["South", "Houston, San Antonio, Dallas, Austin, Jacksonville, Miami, Tampa, Orlando, Charlotte, Atlanta, Nashville, Memphis, Louisville, Raleigh, Virginia Beach, New Orleans, Richmond, Birmingham, Norfolk, Mobile, Fort Lauderdale, St. Petersburg, Hialeah, Tallahassee"],
+                        ["Northeast", "New York City, Philadelphia, Boston, Baltimore, Pittsburgh, Washington,  D.C., Buffalo, Rochester, Providence, Newark, Bridgeport, Worcester, Syracuse, Jersey City, Paterson"],
+                        ["West", "Los Angeles, San Francisco, Seattle, Portland, San Diego, Las Vegas, Phoenix, Denver, Salt Lake City, Sacramento, Oakland, Long Beach, Anaheim, San Jose, Tucson"],
+                        ["Midwest", "Chicago, Detroit, Indianapolis, Columbus, Minneapolis, Milwaukee, Kansas City, Saint Louis, Cleveland, Cincinnati, Omaha, Des Moines, Louisville, Wichita, Springfield"]]
+
+
+
+    nomesMBrasil = nomesMStringBrasil.split(", ")
+    nomesFBrasil = nomesFStringBrasil.split(", ")
+    sobrenomesBrasil = sobrenomesStringBrasil.split(", ")
+    nomesMJapao = nomesMStringJapao.split(", ")
+    nomesFJapao = nomesFStringJapao.split(", ")
+    sobrenomesJapao = sobrenomesStringJapao.split(", ") 
+    nomesMItalia = nomesMStringItalia.split(", ")
+    nomesFItalia = nomesFStringItalia.split(", ")
+    sobrenomesItalia = sobrenomesStringItalia.split(", ") 
+    nomesMEUA = nomesMStringEUA.split(", ")
+    nomesFEUA = nomesFStringEUA.split(", ")
+    sobrenomesEUA = sobrenomesStringEUA.split(", ") 
+
+    regioesECidadesBrasil = []
+    for tupla in regioesECidadesStringsBrasil:
+        cidadesRegiao = tupla[1].split(", ")
+        regioesECidadesBrasil.append([tupla[0],cidadesRegiao])
+    regioesECidadesJapao = []
+    for tupla in regioesECidadesStringsJapao:
+        cidadesRegiao = tupla[1].split(", ")
+        regioesECidadesJapao.append([tupla[0],cidadesRegiao])
+    regioesECidadesItalia = []
+    for tupla in regioesECidadesStringsItalia:
+        cidadesRegiao = tupla[1].split(", ")
+        regioesECidadesItalia.append([tupla[0],cidadesRegiao])
+    regioesECidadesEUA = []
+    for tupla in regioesECidadesStringsEUA:
+        cidadesRegiao = tupla[1].split(", ")
+        regioesECidadesEUA.append([tupla[0],cidadesRegiao])
+    paisERegiaoECidade = [["Brasil",regioesECidadesBrasil],["Japão",regioesECidadesJapao],["Itália",regioesECidadesItalia],["Estados Unidos",regioesECidadesEUA]]
+    paisENomesESobrenomes = [["Brasil",nomesMBrasil,nomesFBrasil,sobrenomesBrasil],["Japão",nomesMJapao,nomesFJapao,sobrenomesJapao],["Itália",nomesMItalia,nomesFItalia,sobrenomesItalia],["Estados Unidos",nomesMEUA,nomesFEUA,sobrenomesEUA]]
+    return paisERegiaoECidade, paisENomesESobrenomes
+
+def preencher_time_com_jogadores_randomizados():
+    for i, time in enumerate(historico.Times, 1):
+        print(f"{i}. {time.nome}")
+    
+    escolha = int(input("Escolha o número do time para ser preenchido: "))
+    
+    if historico.Times[escolha-1].categoria == "Colegial":
+        prob_pais = 99
+        prob_regiao = 85
+        prob_cidade = 75
+    elif historico.Times[escolha-1].categoria == "Universitário":
+        prob_pais = 95
+        prob_regiao = 75
+        prob_cidade = 60
+    elif historico.Times[escolha-1].categoria == "Profissional":
+        prob_pais = 85
+        prob_regiao = 60
+        prob_cidade = 40
+
+    if escolha > 0 and escolha <= len(historico.Times):
+        paisERegiaoECidade, paisENomesESobrenomes = gerarListas()
+        pais_provavel = historico.Times[escolha-1].pais
+        regiao_provavel = historico.Times[escolha-1].regiao
+        cidade_provavel = historico.Times[escolha-1].cidade
+        while len(historico.Times[escolha-1].elenco_atual) < 8:
+            probabilidade = random.randint(0,100)
+            if probabilidade <= prob_pais:
+                pais_escolhido = pais_provavel
+                probabilidade = random.randint(0,100)
+                if probabilidade <= prob_regiao:
+                    regiao_escolhida = regiao_provavel
+                    probabilidade = random.randint(0,100)
+                    if probabilidade <= prob_cidade:
+                        cidade_escolhida = cidade_provavel
+                    else:
+                        cidade_escolhida = random.choice([cidade for cidade in [tupla[1] for tupla in [tupla[1] for tupla in paisERegiaoECidade if tupla[0] == pais_escolhido][0] if tupla[0] == regiao_escolhida][0] if cidade != cidade_provavel])
+                else:
+                    regiao_escolhida = random.choice([tupla[0] for tupla in [tupla[1] for tupla in paisERegiaoECidade if tupla[0] == pais_escolhido][0] if tupla[0] != regiao_provavel])
+                    cidade_escolhida = random.choice([cidade for cidade in [tupla[1] for tupla in [tupla[1] for tupla in paisERegiaoECidade if tupla[0] == pais_escolhido][0] if tupla[0] == regiao_escolhida][0]])
+            else:
+                pais_escolhido = random.choice([tupla[0] for tupla in paisERegiaoECidade if tupla[0] != pais_provavel])
+                regiao_escolhida = random.choice([tupla[0] for tupla in [tupla[1] for tupla in paisERegiaoECidade if tupla[0] == pais_escolhido][0]])
+                cidade_escolhida = random.choice([cidade for cidade in [tupla[1] for tupla in [tupla[1] for tupla in paisERegiaoECidade if tupla[0] == pais_escolhido][0] if tupla[0] == regiao_escolhida][0]])
+
+            sexo_escolhido = random.choice(["Homem","Mulher"])
+
+            if sexo_escolhido == "Homem":
+                nome_escolhido = random.choice([nome for nome in [paisNomeSobrenome[1] for paisNomeSobrenome in paisENomesESobrenomes if paisNomeSobrenome[0] == pais_escolhido][0]])
+            else:
+                nome_escolhido = random.choice([nome for nome in [paisNomeSobrenome[2] for paisNomeSobrenome in paisENomesESobrenomes if paisNomeSobrenome[0] == pais_escolhido][0]])
+
+            sobrenome_escolhido = random.choice([sobrenome for sobrenome in [paisNomeSobrenome[3] for paisNomeSobrenome in paisENomesESobrenomes if paisNomeSobrenome[0] == pais_escolhido][0]])
+
+            nomeCompleto_escolhido = nome_escolhido + " " + sobrenome_escolhido
+
+            while True:
+                sair = True
+                posicao_escolhida = random.choice(["Ponteiro","Oposto","Levantador","Central","Líbero"])
+                for jogador_elenco in historico.Times[escolha-1].elenco_atual:
+                    if jogador_elenco.posicao == posicao_escolhida:
+                        probabilidade = probabilidade = random.randint(0,100)
+                        if posicao_escolhida == "Ponteiro":
+                            if probabilidade <= 70:
+                                sair = False
+                                break
+                            else:
+                                break
+                        else:
+                            if probabilidade <= 95:
+                                sair = False
+                                break
+                            else:
+                                break
+                    else:
+                        continue
+                if sair:
+                    break
+                
+            if historico.Times[escolha-1].categoria == "Colegial":
+                idade_escolhida = random.choice([15,16,17])
+            if historico.Times[escolha-1].categoria == "Universitário":
+                idade_escolhida = random.choice([18,19,20,21])
+            if historico.Times[escolha-1].categoria == "Profissional":
+                numeros = [i for i in range(22, 41)]
+                probabilidades = [1 / (i - 21) for i in numeros]
+                idade_escolhida = random.choices(numeros, weights=probabilidades, k=1)[0]
+
+            if idade_escolhida == 15:
+                if sexo_escolhido == "Homem":
+                    alturas = [round(numero/100,2) for numero in range(151, 201)]
+                if sexo_escolhido == "Mulher":
+                    alturas = [round(numero/100,2) for numero in range(151, 191)]
+            if idade_escolhida == 16:
+                if sexo_escolhido == "Homem":
+                    alturas = [round(numero/100,2) for numero in range(151, 206)]
+                if sexo_escolhido == "Mulher":
+                    alturas = [round(numero/100,2) for numero in range(151, 191)]
+            if idade_escolhida == 17:
+                if sexo_escolhido == "Homem":
+                    alturas = [round(numero/100,2) for numero in range(151, 211)]
+                if sexo_escolhido == "Mulher":
+                    alturas = [round(numero/100,2) for numero in range(151, 191)]
+            if idade_escolhida > 17:
+                if sexo_escolhido == "Homem":
+                    alturas = [round(numero/100,2) for numero in range(151, 216)]
+                if sexo_escolhido == "Mulher":
+                    alturas = [round(numero/100,2) for numero in range(151, 192)]
+
+            if posicao_escolhida == "Líbero":
+                probabilidades = [1 / (altura*altura) for altura in alturas]
+            elif posicao_escolhida == "Central":
+                probabilidades = [altura*altura for altura in alturas]
+            else:
+                probabilidades = alturas
+
+            altura_escolhida = random.choices(alturas, weights=probabilidades, k=1)[0]
+
+            maoDominante_escolhida = random.choices(["Destro","Canhoto","Ambidestro"], weights=[0.7,0.2,0.1], k=1)[0]
+
+            numeroCamisa_escolhida = random.choice([numero for numero in range(1, 100)])
+
+            categoria_escolhida = historico.Times[escolha-1].categoria
+
+            novo_jogador = JogadorVolei(nomeCompleto_escolhido, idade_escolhida, altura_escolhida, cidade_escolhida, regiao_escolhida, pais_escolhido, posicao_escolhida, categoria_escolhida, maoDominante_escolhida, numeroCamisa_escolhida, sexo_escolhido)
+            historico.Jogadores.append(novo_jogador)
+            historico.Times[escolha-1].adicionar_jogador(novo_jogador)
+
+    else:
+        print("Número inválido. Tente novamente.")
+
+def excluir_jogador_permanentemente():
+    # Apresenta ao usuário todos os jogadores na lista numerados
+    for i, jogador in enumerate(historico.Jogadores, 1):
+        print(f"{i}. {jogador.nome}")
+    
+    # Usuário escolhe um jogador pelo número
+    escolha = int(input("Escolha o número do jogador que deseja excluir: "))
+    
+    # Verifica se a escolha é válida
+    if escolha > 0 and escolha <= len(historico.Jogadores):
+        jogador_escolhido = historico.Jogadores.pop(escolha - 1)
+        for time in historico.Times:
+            for jogador_dentro in time.elenco_atual:
+                if jogador_dentro == jogador_escolhido:
+                    time.elenco_atual.remove(jogador_dentro)
+        print(f"O jogador {jogador_escolhido.nome} foi excluído com sucesso!")
+    else:
+        print("Número inválido. Tente novamente.")
+
+def excluir_time_permanentemente():
+    # Apresenta ao usuário todos os times na lista numerados
+    for i, time in enumerate(historico.Times, 1):
+        print(f"{i}. {time.nome}")
+    
+    # Usuário escolhe um jogador pelo número
+    escolha = int(input("Escolha o número do time que deseja excluir: "))
+    
+    # Verifica se a escolha é válida
+    if escolha > 0 and escolha <= len(historico.Times):
+        time_escolhido = historico.Times.pop(escolha - 1)
+        print(f"O time {time_escolhido} foi excluído com sucesso!")
+    else:
+        print("Número inválido. Tente novamente.")
+
+def excluir_modalidade_permanentemente():
+    # Apresenta ao usuário todas as modalidades na lista numeradas
+    for i, modalidade in enumerate(historico.Modalidades, 1):
+        print(f"{i}. {modalidade.nome}")
+    
+    # Usuário escolhe uma modalidade pelo número
+    escolha = int(input("Escolha o número da modalidade que deseja excluir: "))
+    
+    # Verifica se a escolha é válida
+    if escolha > 0 and escolha <= len(historico.Modalidades):
+        modalidade_escolhido = historico.Modalidades.pop(escolha - 1)
+        print(f"A modalidade {modalidade_escolhido} foi excluída com sucesso!")
+    else:
+        print("Número inválido. Tente novamente.")
 
 def remover_jogador_de_time():
     global historico
@@ -1682,6 +2133,7 @@ def criar_jogador():
     genero = int(input("Genero: "))
     altura = float(input("Altura (em metros): "))
     maoDominante = int(input("Mão Dominante: "))
+    cidade_nascimento = input("Cidade de Nascimento: ")
     regiao_nascimento = input("Região de Nascimento: ")
     pais_nascimento = input("País de Nascimento: ")
 
@@ -1714,10 +2166,10 @@ def criar_jogador():
     categorias = ["Colegial", "Universitário", "Profissional"]
     categoria = categorias[int(escolha_categoria) - 1]
 
-    novo_jogador = JogadorVolei(nome, idade, altura, regiao_nascimento, pais_nascimento, posicao, categoria, maoDominante, numeroCamisa, genero)
+    novo_jogador = JogadorVolei(nome, idade, altura, cidade_nascimento, regiao_nascimento, pais_nascimento, posicao, categoria, maoDominante, numeroCamisa, genero)
     historico.Jogadores.append(novo_jogador)
 
-    print(f"\nJogador {nome} criado com sucesso!\n")
+    print(f"\nJogador {nome} criado com sucesso!\n") 
 
 def criar_jogador_por_string(info_string):
     global historico
@@ -1731,24 +2183,26 @@ def criar_jogador_por_string(info_string):
     genero = info_list[2]
     altura = float(info_list[3])
     maoDominante = info_list[4]
-    regiao_nascimento = info_list[5]
-    pais_nascimento = info_list[6]
-    posicao = info_list[7]
-    categoria = info_list[8]
-    numeroCamisa = info_list[9]
+    cidade_nascimento = info_list[5]
+    regiao_nascimento = info_list[6]
+    pais_nascimento = info_list[7]
+    posicao = info_list[8]
+    categoria = info_list[9]
+    numeroCamisa = info_list[10]
 
     # Cria o jogador usando a função criar_jogador
-    novo_jogador = JogadorVolei(nome, idade, altura, regiao_nascimento, pais_nascimento, posicao, categoria, maoDominante, numeroCamisa, genero)
+    novo_jogador = JogadorVolei(nome, idade, altura, cidade_nascimento, regiao_nascimento, pais_nascimento, posicao, categoria, maoDominante, numeroCamisa, genero)
     historico.Jogadores.append(novo_jogador)
 
     print(f"\nJogador {nome} criado com sucesso!\n")
 
 def criar_time():
-
+    
     print("\nCadastro de Novo Time:")
     nome = input("Nome do Time: ")
     pais = input("País do Time: ")
     regiao = input("Região do Time: ")
+    cidade = input("Cidade do Time: ")
 
     # Mostra as posições disponíveis
     print("\nCategorias Disponíveis:")
@@ -1762,7 +2216,7 @@ def criar_time():
     categorias = ["Colegial", "Universitário", "Profissional"]
     categoria = categorias[int(escolha_categoria) - 1]
 
-    novo_time = TimeVolei(nome, pais, regiao, categoria)
+    novo_time = TimeVolei(nome, pais, regiao, cidade, categoria)
     historico.Times.append(novo_time)
 
     print(f"\nTime {nome} criado com sucesso!\n")
@@ -1777,10 +2231,11 @@ def criar_time_por_string(info_string):
     nome = info_list[0]
     pais = info_list[1]
     regiao = info_list[2]
-    categoria = info_list[3]
+    cidade = info_list[3]
+    categoria = info_list[4]
 
     # Cria o time usando a função criar_time
-    novo_time = TimeVolei(nome, pais, regiao, categoria)
+    novo_time = TimeVolei(nome, pais, regiao, cidade, categoria)
     historico.Times.append(novo_time)
 
     print(f"\nTime {nome} criado com sucesso!\n")
@@ -2366,8 +2821,9 @@ def editar_time(time):
     print("1. Nome")
     print("2. País")
     print("3. Região")
-    print("4. Modalidade")
-    print("5. Elenco Atual")
+    print("4. Cidade")
+    print("5. Modalidade")
+    print("6. Elenco Atual")
 
     escolha_atributo = input("\nEscolha o número do atributo para editar: ")
 
@@ -2390,16 +2846,20 @@ def editar_time(time):
         time.regiao = nova_regiao
         print(f"\nRegião do time atualizada para {nova_regiao}.")
     elif escolha_atributo == 4:
+        nova_cidade = input("Digite a nova cidade para o time: ")
+        time.cidade = nova_cidade
+        print(f"\nCidade do time atualizada para {nova_cidade}.")
+    elif escolha_atributo == 5:
         nova_categoria = input("Digite a nova categoria para o time: ")
         time.categoria = nova_categoria
         print(f"\nCategoria do time atualizado para {nova_categoria}.")
-        pass
-    elif escolha_atributo == 5:
+    elif escolha_atributo == 6:
         # Editar elenco atual
         editar_jogadores(time.elenco_atual)
     else:
         print("\nAtributo inválido. Voltando ao menu anterior.\n")
         return
+
 
 def editar_times(lista_times):
     global historico
@@ -2422,7 +2882,7 @@ def editar_times(lista_times):
 
 def editar_jogador(jogador):
     print("\nAtributos disponíveis para edição:")
-    atributos = ["nome", "idade", "altura", "regiao_nascimento", "pais_nascimento", "posicao", "maoDominante", "camisaNumero", "genero"]
+    atributos = ["nome", "idade", "altura", "cidade_nascimento", "regiao_nascimento", "pais_nascimento", "posicao", "maoDominante", "camisaNumero", "genero"]
     for j, atributo in enumerate(atributos, start=1):
         print(f"{j}. {atributo.capitalize()}")
 
