@@ -1655,17 +1655,14 @@ def preencher_times_colegiais_com_jogadores_novos_randomizados():
     
             escolha = historico.Times.index(time) + 1
 
+
             if historico.Times[escolha-1].categoria == "Colegial":
-                prob_pais = 99
-                prob_regiao = 85
-                prob_cidade = 75
-            elif historico.Times[escolha-1].categoria == "Universitário":
                 prob_pais = 95
-                prob_regiao = 75
+                prob_regiao = 80
                 prob_cidade = 60
             elif historico.Times[escolha-1].categoria == "Profissional":
                 prob_pais = 85
-                prob_regiao = 60
+                prob_regiao = 65
                 prob_cidade = 40
 
             if escolha > 0 and escolha <= len(historico.Times):
@@ -1729,11 +1726,9 @@ def preencher_times_colegiais_com_jogadores_novos_randomizados():
                         
                     if historico.Times[escolha-1].categoria == "Colegial":
                         idade_escolhida = 15
-                    if historico.Times[escolha-1].categoria == "Universitário":
-                        idade_escolhida = random.choice([18,19,20,21])
                     if historico.Times[escolha-1].categoria == "Profissional":
-                        numeros = [i for i in range(22, 41)]
-                        probabilidades = [1 / (i - 21) for i in numeros]
+                        numeros = [i for i in range(18, 41)]
+                        probabilidades = [1 / (i - 17) for i in numeros]
                         idade_escolhida = random.choices(numeros, weights=probabilidades, k=1)[0]
 
                     if idade_escolhida == 15:
@@ -1790,19 +1785,13 @@ def aumentar_altura_dos_jogadores():
 def passar_categoria_ou_aposentar():
     for jogador in historico.Jogadores:
         if jogador.categoria == "Colegial" and jogador.idade == 18:
-            jogador.categoria = "Universitário"
-            for time in historico.Times:
-                if jogador in time.elenco_atual:
-                    time.remover_jogador(jogador)
-            print("Jogador "+jogador.nome+" passou para Universitário e está sem time.")
-        if jogador.categoria == "Universitário" and jogador.idade == 22:
             jogador.categoria = "Profissional"
             for time in historico.Times:
                 if jogador in time.elenco_atual:
                     time.remover_jogador(jogador)
             print("Jogador "+jogador.nome+" passou para Profissional e está sem time.")
-        if jogador.categoria == "Profissional" and jogador.idade > 35:
-            probabilidade = 60 + ((jogador.idade-35)*5)
+        if jogador.categoria == "Profissional" and jogador.idade > 30:
+            probabilidade = 30 + ((jogador.idade-30)*5)
             if random.randint(0,100) <= probabilidade:
                 jogador.categoria = "Aposentadoria"
                 for time in historico.Times:
@@ -1901,16 +1890,12 @@ def preencher_time_com_jogadores_randomizados():
     escolha = int(input("Escolha o número do time para ser preenchido: "))
     
     if historico.Times[escolha-1].categoria == "Colegial":
-        prob_pais = 99
-        prob_regiao = 85
-        prob_cidade = 75
-    elif historico.Times[escolha-1].categoria == "Universitário":
         prob_pais = 95
-        prob_regiao = 75
+        prob_regiao = 80
         prob_cidade = 60
     elif historico.Times[escolha-1].categoria == "Profissional":
         prob_pais = 85
-        prob_regiao = 60
+        prob_regiao = 65
         prob_cidade = 40
 
     if escolha > 0 and escolha <= len(historico.Times):
@@ -1974,11 +1959,9 @@ def preencher_time_com_jogadores_randomizados():
                 
             if historico.Times[escolha-1].categoria == "Colegial":
                 idade_escolhida = random.choice([15,16,17])
-            if historico.Times[escolha-1].categoria == "Universitário":
-                idade_escolhida = random.choice([18,19,20,21])
             if historico.Times[escolha-1].categoria == "Profissional":
-                numeros = [i for i in range(22, 41)]
-                probabilidades = [1 / (i - 21) for i in numeros]
+                numeros = [i for i in range(18, 41)]
+                probabilidades = [1 / (i - 17) for i in numeros]
                 idade_escolhida = random.choices(numeros, weights=probabilidades, k=1)[0]
 
             if idade_escolhida == 15:
@@ -2155,15 +2138,14 @@ def criar_jogador():
     # Mostra as posições disponíveis
     print("\nCategorias Disponíveis:")
     print("1. Colegial")
-    print("2. Universitário")
-    print("3. Profissional")
+    print("2. Profissional")
 
     escolha_categoria = input("Escolha o número da categoria desejada: ")
 
     numeroCamisa = input("Número da Camisa: ")
 
     # Mapeia a escolha para a posição correspondente
-    categorias = ["Colegial", "Universitário", "Profissional"]
+    categorias = ["Colegial", "Profissional"]
     categoria = categorias[int(escolha_categoria) - 1]
 
     novo_jogador = JogadorVolei(nome, idade, altura, cidade_nascimento, regiao_nascimento, pais_nascimento, posicao, categoria, maoDominante, numeroCamisa, genero)
@@ -2207,13 +2189,12 @@ def criar_time():
     # Mostra as posições disponíveis
     print("\nCategorias Disponíveis:")
     print("1. Colegial")
-    print("2. Universitário")
-    print("3. Profissional")
+    print("2. Profissional")
 
     escolha_categoria = input("Escolha o número da categoria desejada: ")
 
     # Mapeia a escolha para a posição correspondente
-    categorias = ["Colegial", "Universitário", "Profissional"]
+    categorias = ["Colegial", "Profissional"]
     categoria = categorias[int(escolha_categoria) - 1]
 
     novo_time = TimeVolei(nome, pais, regiao, cidade, categoria)
