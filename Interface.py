@@ -1853,28 +1853,20 @@ def gerarListas():
     nomesMStringRussia = "Ivan, Alexander, Dmitry, Sergey, Andrey, Mikhail, Nikolay, Alexey, Maxim, Vladimir, Pavel, Igor, Yuri, Anatoly, Oleg, Denis, Boris, Evgeny, Anton, Konstantin, Viktor, Artyom, Roman, Stanislav, Kirill, Vitaly, Yaroslav, Grigory, Timofey, Fyodor, Daniil, Nikita, Vasili, Egor, Arkadiy, Ilya, Dmitriy, Boris, Mikhail, Semyon"
     nomesFStringRussia = "Anastasia, Maria, Ekaterina, Olga, Natalia, Svetlana, Irina, Anna, Elena, Tatiana, Yelena, Yekaterina, Marina, Daria, Alexandra, Lyudmila, Vera, Galina, Oksana, Tatyana, Anastasiya, Polina, Nadezhda, Elizaveta, Mariya, Ekaterina, Sofiya, Anna, Ulyana, Yuliya, Varvara, Evgeniya, Ekaterina, Alina, Ksenia, Natalya, Mariya, Arina, Yana, Valentina"
     sobrenomesStringRussia = "Ivanov, Smirnov, Kuznetsov, Popov, Sokolov, Volkov, Lebedev, Kozlov, Novikov, Morozov, Petrov, Sidorov, Mironov, Egorov, Volkova, Smirnova, Romanov, Orlov, Fedorov, Tarasova, Ivanova, Sokolova, Morozova, Vorobiev, Andreev, Karpov, Gavrilova, Alexandrov, Volkova, Makarov, Bogdanov, Grigoriev, Vasilyev, Dmitriev, Pavlov, Smirnov, Voronin, Abramov, Kozlova, Timofeeva, Nikitin, Zakharov, Belov, Semyonov, Fyodorov, Rodionov, Mikhaylova, Osipov, Kulikov, Kudryavtsev, Gorbachev, Ivanovsky, Leontiev, Romanova, Shishkin, Tikhonov, Ulyanov, Yermolov, Zaitsev, Kharitonov"
-    regioesECidadesStringsRussia = [["Central'nyj", "Moscou, Kaluga, Vladimir, Ivanovo, Yaroslavl, Tula, Ryazan, Tver, Kostroma, Smolensk"],
-                                 ["Central'no-Černozёmnyj", "Voronezh, Lipetsk, Belgorod, Tambov, Kursk"],
-                                 ["Vostočno-Sibirskij", "Irkutsk, Krasnoyarsk, Chita, Ulan-Ude, Bratsk, Angarsk, Severobaikalsk, Tulun, Cheremkhovo, Slyudyanka"],
-                                 ["Dal'nevostočnyj", "Vladivostok, Khabarovsk, Ussuriysk, Blagoveshchensk, Yakutsk, Petropavlovsk-Kamchatsky, Yuzhno-Sakhalinsk, Magadan, Anadyr, Nakhodka"],
-                                 ["Severnyj", "Murmansk, Arkhangelsk, Petrozavodsk, Syktyvkar, Vologda, Veliky Novgorod, Severodvinsk, Cherepovets"],
-                                 ["Severo-Kavkazskij", "Pyatigorsk, Stavropol, Vladikavkaz, Nalchik, Grozny, Makhachkala, Cherkessk, Essentuki, Kislovodsk, Mineralnye Vody"],
-                                 ["Severo-Zapadnyj", "São Petersburgo, Veliky Novgorod, Pskov, Kaliningrado"],
-                                 ["Povolžskij", "Samara, Kazan, Saratov, Volgograd, Orenburg, Tolyatti"],
-                                 ["Ural'skij", "Ecaterimburgo, Cheliabinsk, Tiumen, Perm, Magnitogorsk, Ufa, Kurgan, Oremburgo"],
-                                 ["Volgo-Vâtskij", "Nizhny Novgorod, Cheboksary, Izhevsk, Yoshkar-Ola, Kirov, Saransk, Ulyanovsk, Penza"],
-                                 ["Zapadno-Sibirskij", "Novosibirsk, Omsk, Barnaul, Tomsk, Kemerovo, Novokuznetsk, Biysk, Surgut, Nizhnevartovsk, Tyumen"]]
+    regioesECidadesStringsRussia = [["Sever", "São Petersburgo, Murmansk, Arcangel"],
+                                    ["Zapad", "Moscou, Kaliningrado, Smolensk"],
+                                    ["Vostok", "Vladivostok, Irkutsk, Novosibirsk"],
+                                    ["Yug", "Sochi, Volgogrado, Rostov-on-Don"]]
 
 
 
     nomesMStringArgentina = "Juan, Martín, Lucas, Mateo, Santiago, Tomás, Agustín, Nicolás, Facundo, Joaquín, Benjamín, Franco, Gabriel, Sebastián, Leonardo, Francisco, Manuel, Emiliano, Valentín, Ignacio, Alejandro, Andrés, Carlos, Diego, Eduardo, Federico, Gonzalo, Hernán, Iván, Javier, Lautaro, Maximiliano, Ricardo, Rodrigo, Simón, Valentín, Vicente, Alan, Bruno, Damian, Enzo, Ramiro, Adrián, Alfredo, Álvaro, Antonio, Ariel, Axel, Baltasar, César, Cristian, Daniel, Ernesto, Esteban, Ezequiel, Felipe, Gastón, Guillermo, Héctor, Hugo, Ismael, Jorge, José, Leandro, Lisandro, Luciano, Mariano, Mario, Matías, Mauricio, Nahuel, Pablo, Pedro, Rafael, Renzo, Rubén, Sergio, Thiago, Ulises, Valentín, Walter"
     nomesFStringArgentina = "María, Sofía, Martina, Valentina, Camila, Lucía, Victoria, Emilia, Julieta, Paula, Agustina, Milagros, Catalina, Florencia, Isabella, Mía, Lola, Renata, Josefina, Clara, Delfina, Elena, Antonia, Ana, Bianca, Abril, Alicia, Amparo, Ángeles, Belén, Carla, Carolina, Cecilia, Daniela, Eugenia, Gabriela, Inés, Irene, Juana, Lara, Laura, Malena, Mariana, Mercedes, Nadia, Noelia, Olivia, Rocío, Sara, Teresa, Violeta, Ailén, Alma, Anaís, Andrea, Araceli, Brenda, Candela, Clara, Constanza, Débora, Eliana, Fátima, Gabriela, Graciela, Irina, Jazmín, Johana, Lila, Lorena, Magalí, Mara, Marisa, Miranda, Naiara, Noemí, Pamela, Patricia, Raquel, Samanta, Selene, Tamara, Úrsula, Vanesa, Verónica, Wanda, Yamila"
     sobrenomesStringArgentina = "González, Rodríguez, Gómez, Fernández, López, Díaz, Martínez, Pérez, García, Sánchez, Romero, Sosa, Torres, Álvarez, Ruiz, Ramírez, Flores, Benítez, Herrera, Aguilar, Castro, Acosta, Medina, Silva, Rojas, Moreno, Ortiz, Núñez, Luna, Campos, Delgado, Cabrera, Molina, Maldonado, Vega, Castillo, Ortega, Ramos, Espinosa, Vázquez, Muñoz, Márquez, Ponce, Giménez, Navarro, Ríos, Bravo, Figueroa, Ferreyra, Domínguez, Morales, Ibarra, Córdoba, Cortez, Roldán, Escobar, Mansilla, Luna, Pereyra, Godoy, Salvatore, Barros, Chávez, Bianchi, Villalba, Ferrer, Soria, Soto, Miranda, Esquivel, Peralta, Olivera, Palacios, Franco, Toledo, Caruso, Ferreira, Páez, Gonzales, Dominguez, Roldán, Estévez, Lucero, Cardozo, Pereira, Mendoza, Acuña, Arroyo, Barreto, Bazán, Medina, Segovia, Gallego, Mendoza, Barrera, Ávila, Novoa, Escudero, Pizarro, Saavedra, Salinas, Monroy, Cabrero, Sotelo, Morales, Ledesma"
-    regioesECidadesStringsArgentina = [["Provincia de Buenos Aires", "Buenos Aires, La Plata"],
-                                 ["Norte Grande Argentino", "Salta, San Miguel de Tucumán, Catamarca, La Rioja, Santiago del Estero, San Salvador de Jujuy"],
-                                 ["Nuevo Cuyo", "Mendoza, San Juan, San Luis"],
-                                 ["Patagonia", "Bariloche, Neuquén, Comodoro Rivadavia, Trelew, Puerto Madryn, Rio Gallegos, Ushuaia, El Calafate, Esquel, Rawson"],
-                                 ["Centro", "Córdoba, Paraná, Santa Fe"]]
+    regioesECidadesStringsArgentina = [["Norte", "Salta, Jujuy, Resistencia"],
+                                       ["Oeste", "Mendoza, San Juan, San Luis"],
+                                       ["Est", "Buenos Aires, Rosário, Córdoba"],
+                                       ["Sur", "Ushuaia, Bariloche, Mar del Plata"]]
     
 
 
