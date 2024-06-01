@@ -1832,7 +1832,7 @@ def gerarListas():
 
     nomesMStringItalia = "Giuseppe, Francesco, Marco, Lorenzo, Matteo, Giovanni, Luca, Antonio, Andrea, Leonardo, Davide, Simone, Pietro, Filippo, Vincenzo, Emanuele, Raffaele, Federico, Carlo, Enrico, Stefano, Salvatore, Giorgio, Paolo, Michele, Alessio, Angelo, Daniele, Vittorio, Massimo, Tommaso, Gabriele, Mauro, Domenico, Piero, Bruno, Gianluca, Renato, Enzo, Edoardo, Luigi, Sergio, Luciano, Emilio, Aldo, Franco, Ruggero, Alberto, Rocco, Giacomo, Pierluigi, Fabrizio, Ettore, Giordano, Nunzio, Fausto, Gianni, Nino, Gaetano, Renzo, Sandro, Gino, Umberto, Arturo, Ottavio, Tiziano, Dante, Ugo, Amerigo, Marcello, Lucio, Mario, Valentino, Giancarlo, Silvio, Orazio, Eligio, Fulvio, Tullio, Onofrio, Remo, Settimio, Teodoro"
     nomesFStringItalia = "Sofia, Chiara, Alessia, Giulia, Martina, Sara, Elisa, Alice, Laura, Valentina, Francesca, Greta, Gaia, Maria, Giuliana, Veronica, Giada, Elena, Aurora, Lucia, Roberta, Anna, Eleonora, Serena, Noemi, Valeria, Ilaria, Camilla, Emma, Viola, Caterina, Irene, Federica, Simona, Marta, Melania, Paola, Benedetta, Linda, Flavia"
-    sobrenomesStringItalia = "Rossi, Russo, Ferrari, Esposito, Bianchi, Romano, Colombo, Ricci, Marino, Greco, Bruno, Gallo, Conti, De Luca, Mancini, Costa, Giordano, Rizzo, Lombardi, Moretti, Barbieri, Fontana, Santoro, Mariani, Rinaldi, Caruso, Ferrara, Galli, Martini, Leone, Longo, Gatti, Testa, Vitale, Marchetti, Messina, Monti, Parisi, De Angelis, Palumbo, Coppola, Marini, Ferraro, Orlando, Silvestri, Serra, Riccardi, Farina, Rizzi, Montanari, Fabbri, Neri, Moro, Fiore, De Rosa, Ferri, Pellegrini, Giannini, Grasso, Sala, Donati, Napolitano, Riva, Basile, Bernardi, Sacco, D’Angelo, Gentile, Morelli, Caputo, De Santis, Valentini, Guerra, Bellini, Pellegrino, D’Agostino, Palmieri, Rossetti"
+    sobrenomesStringItalia = "Rossi, Russo, Ferrari, Esposito, Bianchi, Romano, Colombo, Ricci, Marino, Greco, Bruno, Gallo, Conti, De Luca, Mancini, Costa, Giordano, Rizzo, Lombardi, Moretti, Barbieri, Fontana, Santoro, Mariani, Rinaldi, Caruso, Ferrara, Galli, Martini, Leone, Longo, Gatti, Testa, Vitale, Marchetti, Messina, Monti, Parisi, De Angelis, Palumbo, Coppola, Marini, Ferraro, Orlando, Silvestri, Serra, Riccardi, Farina, Rizzi, Montanari, Fabbri, Neri, Moro, Fiore, De Rosa, Ferri, Pellegrini, Giannini, Grasso, Sala, Donati, Napolitano, Riva, Basile, Bernardi, Sacco, D'Angelo, Gentile, Morelli, Caputo, De Santis, Valentini, Guerra, Bellini, Pellegrino, D’Agostino, Palmieri, Rossetti"
     regioesECidadesStringsItalia = [["Centrale","Roma, Florença, Perúgia, Siena, Pisa, Arezzo, Grosseto, Livorno, Lucca, Ancona, Ascoli Piceno, Pescara, Terni, Rieti, Viterbo, Pesaro, Foligno, Città di Castello, Spoleto, Orvieto"],
                         ["Settentrionale","Milão, Turim, Gênova, Bolonha, Veneza, Verona, Trieste, Pádua, Brescia, Ferrara, Parma, Mântua, Treviso, Udine, Vicenza, Novara, Como, Asti, Monza, Ravenna"],
                         ["Meridional","Nápoles, Salerno, Bari, Taranto, Catanzaro, Reggio Calabria, Lecce, Cosenza, Foggia, Matera, Campobasso, Potenza, Brindisi, Barletta, Andria, Trani, Avellino, Benevento, Caserta, Crotone, Ragusa, Vibo Valentia, Terni, Lamezia Terme, Pescara, Ancona, Aosta, Teramo, Fermo, Ascoli Piceno, Macerata, Campobasso, Isernia, Rieti, Viterbo"],
@@ -1847,6 +1847,23 @@ def gerarListas():
                         ["Northeast", "New York City, Philadelphia, Boston, Baltimore, Pittsburgh, Washington, Buffalo, Rochester, Providence, Newark, Bridgeport, Worcester, Syracuse, Jersey City, Paterson"],
                         ["West", "Los Angeles, San Francisco, Seattle, Portland, San Diego, Las Vegas, Phoenix, Denver, Salt Lake City, Sacramento, Oakland, Long Beach, Anaheim, San Jose, Tucson"],
                         ["Midwest", "Chicago, Detroit, Indianapolis, Columbus, Minneapolis, Milwaukee, Kansas City, Saint Louis, Cleveland, Cincinnati, Omaha, Des Moines, Louisville, Wichita, Springfield"]]
+    
+
+
+    nomesMStringRussia = "Ivan, Alexander, Dmitry, Sergey, Andrey, Mikhail, Nikolay, Alexey, Maxim, Vladimir, Pavel, Igor, Yuri, Anatoly, Oleg, Denis, Boris, Evgeny, Anton, Konstantin, Viktor, Artyom, Roman, Stanislav, Kirill, Vitaly, Yaroslav, Grigory, Timofey, Fyodor, Daniil, Nikita, Vasili, Egor, Arkadiy, Ilya, Dmitriy, Boris, Mikhail, Semyon"
+    nomesFStringRussia = "Anastasia, Maria, Ekaterina, Olga, Natalia, Svetlana, Irina, Anna, Elena, Tatiana, Yelena, Yekaterina, Marina, Daria, Alexandra, Lyudmila, Vera, Galina, Oksana, Tatyana, Anastasiya, Polina, Nadezhda, Elizaveta, Mariya, Ekaterina, Sofiya, Anna, Ulyana, Yuliya, Varvara, Evgeniya, Ekaterina, Alina, Ksenia, Natalya, Mariya, Arina, Yana, Valentina"
+    sobrenomesStringRussia = "Ivanov, Smirnov, Kuznetsov, Popov, Sokolov, Volkov, Lebedev, Kozlov, Novikov, Morozov, Petrov, Sidorov, Mironov, Egorov, Volkova, Smirnova, Romanov, Orlov, Fedorov, Tarasova, Ivanova, Sokolova, Morozova, Vorobiev, Andreev, Karpov, Gavrilova, Alexandrov, Volkova, Makarov, Bogdanov, Grigoriev, Vasilyev, Dmitriev, Pavlov, Smirnov, Voronin, Abramov, Kozlova, Timofeeva, Nikitin, Zakharov, Belov, Semyonov, Fyodorov, Rodionov, Mikhaylova, Osipov, Kulikov, Kudryavtsev, Gorbachev, Ivanovsky, Leontiev, Romanova, Shishkin, Tikhonov, Ulyanov, Yermolov, Zaitsev, Kharitonov"
+    regioesECidadesStringsRussia = [["Central'nyj", "Moscou, Kaluga, Vladimir, Ivanovo, Yaroslavl, Tula, Ryazan, Tver, Kostroma, Smolensk"],
+                                 ["Central'no-Černozёmnyj", "Voronezh, Lipetsk, Belgorod, Tambov, Kursk"],
+                                 ["Vostočno-Sibirskij", "Irkutsk, Krasnoyarsk, Chita, Ulan-Ude, Bratsk, Angarsk, Severobaikalsk, Tulun, Cheremkhovo, Slyudyanka"],
+                                 ["Dal'nevostočnyj", "Vladivostok, Khabarovsk, Ussuriysk, Blagoveshchensk, Yakutsk, Petropavlovsk-Kamchatsky, Yuzhno-Sakhalinsk, Magadan, Anadyr, Nakhodka"],
+                                 ["Severnyj", "Murmansk, Arkhangelsk, Petrozavodsk, Syktyvkar, Vologda, Veliky Novgorod, Severodvinsk, Cherepovets"],
+                                 ["Severo-Kavkazskij", "Pyatigorsk, Stavropol, Vladikavkaz, Nalchik, Grozny, Makhachkala, Cherkessk, Essentuki, Kislovodsk, Mineralnye Vody"],
+                                 ["Severo-Zapadnyj", "São Petersburgo, Veliky Novgorod, Pskov, Kaliningrado"],
+                                 ["Povolžskij", "Samara, Kazan, Saratov, Volgograd, Orenburg, Tolyatti"],
+                                 ["Ural'skij", "Ecaterimburgo, Cheliabinsk, Tiumen, Perm, Magnitogorsk, Ufa, Kurgan, Oremburgo"],
+                                 ["Volgo-Vâtskij", "Nizhny Novgorod, Cheboksary, Izhevsk, Yoshkar-Ola, Kirov, Saransk, Ulyanovsk, Penza"],
+                                 ["Zapadno-Sibirskij", "Novosibirsk, Omsk, Barnaul, Tomsk, Kemerovo, Novokuznetsk, Biysk, Surgut, Nizhnevartovsk, Tyumen"]]
 
 
 
@@ -1861,7 +1878,10 @@ def gerarListas():
     sobrenomesItalia = sobrenomesStringItalia.split(", ") 
     nomesMEUA = nomesMStringEUA.split(", ")
     nomesFEUA = nomesFStringEUA.split(", ")
-    sobrenomesEUA = sobrenomesStringEUA.split(", ") 
+    sobrenomesEUA = sobrenomesStringEUA.split(", ")
+    nomesMRussia = nomesMStringRussia.split(", ")
+    nomesFRussia = nomesFStringRussia.split(", ")
+    sobrenomesRussia = sobrenomesStringRussia.split(", ") 
 
     regioesECidadesBrasil = []
     for tupla in regioesECidadesStringsBrasil:
@@ -1879,8 +1899,12 @@ def gerarListas():
     for tupla in regioesECidadesStringsEUA:
         cidadesRegiao = tupla[1].split(", ")
         regioesECidadesEUA.append([tupla[0],cidadesRegiao])
-    paisERegiaoECidade = [["Brasil",regioesECidadesBrasil],["Japão",regioesECidadesJapao],["Itália",regioesECidadesItalia],["Estados Unidos",regioesECidadesEUA]]
-    paisENomesESobrenomes = [["Brasil",nomesMBrasil,nomesFBrasil,sobrenomesBrasil],["Japão",nomesMJapao,nomesFJapao,sobrenomesJapao],["Itália",nomesMItalia,nomesFItalia,sobrenomesItalia],["Estados Unidos",nomesMEUA,nomesFEUA,sobrenomesEUA]]
+    regioesECidadesRussia = []
+    for tupla in regioesECidadesStringsRussia:
+        cidadesRegiao = tupla[1].split(", ")
+        regioesECidadesRussia.append([tupla[0],cidadesRegiao])
+    paisERegiaoECidade = [["Brasil",regioesECidadesBrasil],["Japão",regioesECidadesJapao],["Itália",regioesECidadesItalia],["Estados Unidos",regioesECidadesEUA],["Rússia",regioesECidadesRussia]]
+    paisENomesESobrenomes = [["Brasil",nomesMBrasil,nomesFBrasil,sobrenomesBrasil],["Japão",nomesMJapao,nomesFJapao,sobrenomesJapao],["Itália",nomesMItalia,nomesFItalia,sobrenomesItalia],["Estados Unidos",nomesMEUA,nomesFEUA,sobrenomesEUA],["Rússia",nomesMRussia,nomesFRussia,sobrenomesRussia]]
     return paisERegiaoECidade, paisENomesESobrenomes
 
 def preencher_time_com_jogadores_randomizados():
