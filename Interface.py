@@ -1867,6 +1867,35 @@ def gerarListas():
 
 
 
+    nomesMStringArgentina = "Juan, Martín, Lucas, Mateo, Santiago, Tomás, Agustín, Nicolás, Facundo, Joaquín, Benjamín, Franco, Gabriel, Sebastián, Leonardo, Francisco, Manuel, Emiliano, Valentín, Ignacio, Alejandro, Andrés, Carlos, Diego, Eduardo, Federico, Gonzalo, Hernán, Iván, Javier, Lautaro, Maximiliano, Ricardo, Rodrigo, Simón, Valentín, Vicente, Alan, Bruno, Damian, Enzo, Ramiro, Adrián, Alfredo, Álvaro, Antonio, Ariel, Axel, Baltasar, César, Cristian, Daniel, Ernesto, Esteban, Ezequiel, Felipe, Gastón, Guillermo, Héctor, Hugo, Ismael, Jorge, José, Leandro, Lisandro, Luciano, Mariano, Mario, Matías, Mauricio, Nahuel, Pablo, Pedro, Rafael, Renzo, Rubén, Sergio, Thiago, Ulises, Valentín, Walter"
+    nomesFStringArgentina = "María, Sofía, Martina, Valentina, Camila, Lucía, Victoria, Emilia, Julieta, Paula, Agustina, Milagros, Catalina, Florencia, Isabella, Mía, Lola, Renata, Josefina, Clara, Delfina, Elena, Antonia, Ana, Bianca, Abril, Alicia, Amparo, Ángeles, Belén, Carla, Carolina, Cecilia, Daniela, Eugenia, Gabriela, Inés, Irene, Juana, Lara, Laura, Malena, Mariana, Mercedes, Nadia, Noelia, Olivia, Rocío, Sara, Teresa, Violeta, Ailén, Alma, Anaís, Andrea, Araceli, Brenda, Candela, Clara, Constanza, Débora, Eliana, Fátima, Gabriela, Graciela, Irina, Jazmín, Johana, Lila, Lorena, Magalí, Mara, Marisa, Miranda, Naiara, Noemí, Pamela, Patricia, Raquel, Samanta, Selene, Tamara, Úrsula, Vanesa, Verónica, Wanda, Yamila"
+    sobrenomesStringArgentina = "González, Rodríguez, Gómez, Fernández, López, Díaz, Martínez, Pérez, García, Sánchez, Romero, Sosa, Torres, Álvarez, Ruiz, Ramírez, Flores, Benítez, Herrera, Aguilar, Castro, Acosta, Medina, Silva, Rojas, Moreno, Ortiz, Núñez, Luna, Campos, Delgado, Cabrera, Molina, Maldonado, Vega, Castillo, Ortega, Ramos, Espinosa, Vázquez, Muñoz, Márquez, Ponce, Giménez, Navarro, Ríos, Bravo, Figueroa, Ferreyra, Domínguez, Morales, Ibarra, Córdoba, Cortez, Roldán, Escobar, Mansilla, Luna, Pereyra, Godoy, Salvatore, Barros, Chávez, Bianchi, Villalba, Ferrer, Soria, Soto, Miranda, Esquivel, Peralta, Olivera, Palacios, Franco, Toledo, Caruso, Ferreira, Páez, Gonzales, Dominguez, Roldán, Estévez, Lucero, Cardozo, Pereira, Mendoza, Acuña, Arroyo, Barreto, Bazán, Medina, Segovia, Gallego, Mendoza, Barrera, Ávila, Novoa, Escudero, Pizarro, Saavedra, Salinas, Monroy, Cabrero, Sotelo, Morales, Ledesma"
+    regioesECidadesStringsArgentina = [["Provincia de Buenos Aires", "Buenos Aires, La Plata"],
+                                 ["Norte Grande Argentino", "Salta, San Miguel de Tucumán, Catamarca, La Rioja, Santiago del Estero, San Salvador de Jujuy"],
+                                 ["Nuevo Cuyo", "Mendoza, San Juan, San Luis"],
+                                 ["Patagonia", "Bariloche, Neuquén, Comodoro Rivadavia, Trelew, Puerto Madryn, Rio Gallegos, Ushuaia, El Calafate, Esquel, Rawson"],
+                                 ["Centro", "Córdoba, Paraná, Santa Fe"]]
+    
+
+
+    nomesMStringFranca = "Clément, Louis, Pierre, Antoine, Étienne, Alexandre, Mathieu, Vincent, Baptiste, Gabriel, Guillaume, Julien, Maxime, Olivier, Lucas, Théo, Victor, Jules, François, Paul, Jacques, Jean, Rémi, Lionel, Nicolas, Romain, Xavier, Sylvain, Benjamin, Laurent, Lucien, Marcel, Arthur, René, Adrien, Lionel, Cédric, Arnaud, Corentin, Dimitri"
+    nomesFStringFranca = "Sophie, Camille, Léa, Manon, Emma, Chloé, Sarah, Alice, Juliette, Clara, Charlotte, Marie, Émilie, Anaïs, Margaux, Pauline, Louise, Elodie, Laura, Audrey, Julie, Amélie, Céline, Mathilde, Mélanie, Sandrine, Delphine, Nathalie, Elise, Hélène, Marion, Amandine, Fanny, Océane, Lucie, Marine, Aurélie, Sylvie, Valentine, Carine"
+    sobrenomesStringFranca = "Dubois, Martin, Bernard, Thomas, Robert, Richard, Petit, Durand, Leroy, Moreau, Simon, Laurent, Lefèvre, Michel, Garcia, Lefebvre, Rousseau, Mercier, Dupont, Lambert, Girard, Bonnet, Fernandez, Picard, Leroux, Marchand, Lucas, Bertrand, Leroux, Roux, Cohen, Roussel, Fournier, Dupuis, Gauthier, Muller, Henry, Legrand, Guerin, Caron, Rossi, Chevalier, André, Noel, Lucas, Barbier, Boucher, Denis, Garnier, Leclerc, Martinez, Lemaire, Vincent, Carpentier, Faure, Boulanger, Renard, Arnaud, Adam, Rolland"
+    regioesECidadesStringsFranca = [["Nord", "Lille, Amiens, Paris, Strasbourg, Reims, Metz, Rouen, Le Havre, Caen, Orléans, Tours,"],
+                                 ["Ouest", "Rennes, Brest, Quimper, Lorient, Nantes, Angers, Le Mans, Bordeaux, Limoges, Pau"],
+                                 ["Est", "Strasbourg, Reims, Metz, Dijon, Besançon, Lyon, Saint-Étienne"],
+                                 ["Sud", "Ajaccio, Bastia, Toulouse, Montpellier, Nîmes, Marseille, Nice, Toulon"]]
+
+
+
+    nomesMStringAlemanha = "Alexander, Maximilian, Lukas, Leon, Noah, Elias, Paul, Felix, Jonas, Luca, Oliver, Benjamin, Simon, Niklas, Jan, Fabian, Moritz, Julian, Timo, Daniel, Hannes, Florian, Bastian, Manuel, Christian, Tobias, Markus, Sebastian, Stefan, André, Johann, Matthias, Henrik, Martin, Lars, Kevin, Patrick, Raphael, Dennis, Michael"
+    nomesFStringAlemanha = "Sophie, Marie, Emilia, Hannah, Mia, Lea, Lena, Laura, Anna, Lina, Charlotte, Clara, Pauline, Julia, Johanna, Amelie, Sophia, Sarah, Elisa, Katharina, Frieda, Leonie, Isabel, Maja, Elena, Franziska, Victoria, Alina, Carla, Luisa, Eva, Helena, Anja, Sabrina, Miriam, Selina, Fiona, Vanessa, Sandra, Rebecca"
+    sobrenomesStringAlemanha = "Schmidt, Müller, Schneider, Fischer, Weber, Meyer, Wagner, Becker, Schulz, Hoffmann, Koch, Bauer, Richter, Klein, Wolf, Neumann, Schwarz, Zimmermann, Braun, Krüger, Hofmann, Schröder, Lange, Meier, Lehmann, Peters, Huber, Möller, Walter, Richter, Krause, Keller, Vogel, Schmitt, Herrmann, Winkler, Friedrich, Günther, Berger, Arnold, Schulze, Albrecht, Beyer, Heinrich, Jung, Beck, Simon, Lorenz, Otto, Baumann, Stein, Brandt, Göring, Haas, Wenzel, Hahn, Sommer, Voigt, Schuster, Lange"
+    regioesECidadesStringsAlemanha = [["Norden", "Hamburgo, Bremen, Hanôver, Kiel, Lübeck"],
+                                    ["Westen", "Colônia, Düsseldorf, Dortmund, Essen, Bonn"],
+                                    ["Ost", "Berlim, Dresden, Leipzig, Potsdam, Rostock"],
+                                    ["Süd", "Munique, Frankfurt, Stuttgart, Nurembergue, Friburgo"]]
+
     nomesMBrasil = nomesMStringBrasil.split(", ")
     nomesFBrasil = nomesFStringBrasil.split(", ")
     sobrenomesBrasil = sobrenomesStringBrasil.split(", ")
@@ -1881,7 +1910,16 @@ def gerarListas():
     sobrenomesEUA = sobrenomesStringEUA.split(", ")
     nomesMRussia = nomesMStringRussia.split(", ")
     nomesFRussia = nomesFStringRussia.split(", ")
-    sobrenomesRussia = sobrenomesStringRussia.split(", ") 
+    sobrenomesRussia = sobrenomesStringRussia.split(", ")
+    nomesMArgentina = nomesMStringArgentina.split(", ")
+    nomesFArgentina = nomesFStringArgentina.split(", ")
+    sobrenomesArgentina = sobrenomesStringArgentina.split(", ")
+    nomesMFranca = nomesMStringFranca.split(", ")
+    nomesFFranca = nomesFStringFranca.split(", ")
+    sobrenomesFranca = sobrenomesStringFranca.split(", ")
+    nomesMAlemanha = nomesMStringAlemanha.split(", ")
+    nomesFAlemanha = nomesFStringAlemanha.split(", ")
+    sobrenomesAlemanha = sobrenomesStringAlemanha.split(", ") 
 
     regioesECidadesBrasil = []
     for tupla in regioesECidadesStringsBrasil:
@@ -1903,8 +1941,20 @@ def gerarListas():
     for tupla in regioesECidadesStringsRussia:
         cidadesRegiao = tupla[1].split(", ")
         regioesECidadesRussia.append([tupla[0],cidadesRegiao])
-    paisERegiaoECidade = [["Brasil",regioesECidadesBrasil],["Japão",regioesECidadesJapao],["Itália",regioesECidadesItalia],["Estados Unidos",regioesECidadesEUA],["Rússia",regioesECidadesRussia]]
-    paisENomesESobrenomes = [["Brasil",nomesMBrasil,nomesFBrasil,sobrenomesBrasil],["Japão",nomesMJapao,nomesFJapao,sobrenomesJapao],["Itália",nomesMItalia,nomesFItalia,sobrenomesItalia],["Estados Unidos",nomesMEUA,nomesFEUA,sobrenomesEUA],["Rússia",nomesMRussia,nomesFRussia,sobrenomesRussia]]
+    regioesECidadesArgentina = []
+    for tupla in regioesECidadesStringsArgentina:
+        cidadesRegiao = tupla[1].split(", ")
+        regioesECidadesArgentina.append([tupla[0],cidadesRegiao])
+    regioesECidadesFranca = []
+    for tupla in regioesECidadesStringsFranca:
+        cidadesRegiao = tupla[1].split(", ")
+        regioesECidadesFranca.append([tupla[0],cidadesRegiao])
+    regioesECidadesAlemanha = []
+    for tupla in regioesECidadesStringsAlemanha:
+        cidadesRegiao = tupla[1].split(", ")
+        regioesECidadesAlemanha.append([tupla[0],cidadesRegiao])
+    paisERegiaoECidade = [["Brasil",regioesECidadesBrasil],["Japão",regioesECidadesJapao],["Itália",regioesECidadesItalia],["Estados Unidos",regioesECidadesEUA],["Rússia",regioesECidadesRussia],["Argentina",regioesECidadesArgentina],["França",regioesECidadesFranca],["Alemanha",regioesECidadesAlemanha]]
+    paisENomesESobrenomes = [["Brasil",nomesMBrasil,nomesFBrasil,sobrenomesBrasil],["Japão",nomesMJapao,nomesFJapao,sobrenomesJapao],["Itália",nomesMItalia,nomesFItalia,sobrenomesItalia],["Estados Unidos",nomesMEUA,nomesFEUA,sobrenomesEUA],["Rússia",nomesMRussia,nomesFRussia,sobrenomesRussia],["Argentina",nomesMArgentina,nomesFArgentina,sobrenomesArgentina],["França",nomesMFranca,nomesFFranca,sobrenomesFranca],["Alemanha",nomesMAlemanha,nomesFAlemanha,sobrenomesAlemanha]]
     return paisERegiaoECidade, paisENomesESobrenomes
 
 def preencher_time_com_jogadores_randomizados():
