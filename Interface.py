@@ -2234,25 +2234,35 @@ def criar_jogador():
     print("\nCadastro de Novo Jogador:")
     nome = input("Nome: ")
     idade = int(input("Idade: "))
-    genero = int(input("Genero: "))
+
+    print("\nGêneros Disponíveis:")
+    print("1. Homem")
+    print("2. Mulher")
+    escolha_genero = input("Escolha o número do Gênero desejado: ")
+    generos = ["Homem", "Mulher"]
+    genero = generos[int(escolha_genero) - 1]
+
     altura = float(input("Altura (em metros): "))
-    maoDominante = int(input("Mão Dominante: "))
+
+    print("\nOpções Disponíveis para Mão Dominante:")
+    print("1. Destro")
+    print("2. Canhoto")
+    print("3. Ambidestro")
+    escolha_maoDominante = input("Escolha o número da Mão Dominante desejada: ")
+    maoDominantes = ["Destro", "Canhoto", "Ambidestro"]
+    maoDominante = maoDominantes[int(escolha_maoDominante) - 1]
+
     cidade_nascimento = input("Cidade de Nascimento: ")
     regiao_nascimento = input("Região de Nascimento: ")
     pais_nascimento = input("País de Nascimento: ")
 
-    # Mostra as posições disponíveis
     print("\nPosições Disponíveis:")
     print("1. Oposto")
     print("2. Levantador")
     print("3. Líbero")
     print("4. Central")
     print("5. Ponteiro")
-
-    # Solicita a escolha da posição
     escolha_posicao = input("Escolha o número da posição desejada: ")
-
-    # Mapeia a escolha para a posição correspondente
     posicoes = ["Oposto", "Levantador", "Líbero", "Central", "Ponteiro"]
     posicao = posicoes[int(escolha_posicao) - 1]
 
@@ -2260,14 +2270,11 @@ def criar_jogador():
     print("\nCategorias Disponíveis:")
     print("1. Colegial")
     print("2. Profissional")
-
     escolha_categoria = input("Escolha o número da categoria desejada: ")
-
-    numeroCamisa = input("Número da Camisa: ")
-
-    # Mapeia a escolha para a posição correspondente
     categorias = ["Colegial", "Profissional"]
     categoria = categorias[int(escolha_categoria) - 1]
+
+    numeroCamisa = input("Número da Camisa: ")
 
     novo_jogador = JogadorVolei(nome, idade, altura, cidade_nascimento, regiao_nascimento, pais_nascimento, posicao, categoria, maoDominante, numeroCamisa, genero)
     historico.Jogadores.append(novo_jogador)
