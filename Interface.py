@@ -1904,8 +1904,28 @@ def gerarListas():
     regioesECidadesStringsAlemanha = [["Norden", "Hamburgo, Bremen, Hanôver, Kiel, Lübeck"],
                                     ["Westen", "Colônia, Düsseldorf, Dortmund, Essen, Bonn"],
                                     ["Ost", "Berlim, Dresden, Leipzig, Potsdam, Rostock"],
-                                    ["Süd", "Munique, Frankfurt, Stuttgart, Nurembergue, Friburgo"]]
+                                    ["Süd", "Munique, Frankfurt, Stuttgart, Nurembergue, Friburgo"]]    
+
+
+
+    nomesMStringPolonia = "Adam, Adrian, Antoni, Bartłomiej, Błażej, Dawid, Dominik, Emil, Grzegorz, Hubert, Igor, Jacek, Jan, Kacper, Krzysztof, Łukasz, Marcin, Michał, Piotr, Rafał, Szymon, Tomasz, Wojciech, Zbigniew, Aleksander, Andrzej, Damian, Daniel, Dariusz, Ernest, Filip, Henryk, Jakub, Jarosław, Kamil, Konrad, Marek, Mateusz, Mikołaj, Patryk, Paweł, Robert, Sebastian, Stanisław, Tadeusz, Wiktor, Witold, Zygmunt"
+    nomesFStringPolonia = "Ada, Agnieszka, Aleksandra, Alicja, Aneta, Angelika, Anna, Beata, Bogna, Dagmara, Dominika, Dorota, Edyta, Elżbieta, Ewa, Gabriela, Grażyna, Halina, Hanna, Irena, Iwona, Izabela, Jagoda, Joanna, Julia, Justyna, Kamila, Karolina, Katarzyna, Kinga, Klaudia, Krystyna, Lidia, Magdalena, Małgorzata, Marta, Monika, Natalia, Oliwia, Patrycja, Paulina, Renata, Sandra, Sylwia, Teresa, Urszula, Weronika, Wiktoria, Zofia"
+    sobrenomesStringPolonia = "Nowak, Kowalski, Wiśniewski, Dąbrowski, Lewandowski, Wójcik, Kamiński, Kowalczyk, Zieliński, Szymański, Woźniak, Kozłowski, Jankowski, Mazur, Krawczyk, Piotrowski, Kwiatkowski, Grabowski, Nowakowski, Pawłowski, Michalski, Adamczyk, Duda, Zając, Wieczorek, Kaczmarek, Król, Wojciechowski, Wróbel, Stępień, Pawlik, Kubiak, Sikora, Baran, Kowalewski, Marek, Nowicki, Sadowski, Tomaszewski, Zalewski, Włodarczyk, Jabłoński, Krupa, Mazurek, Krajewski, Łukasiewicz, Górski, Sikorski, Rogowski"
+    regioesECidadesStringsPolonia = [["Północ", "Gdańsk, Gdynia, Sopot, Szczecin, Bydgoszcz, Toruń, Koszalin"],
+                                    ["Zachód", "Poznań, Wrocław, Zielona Góra, Gorzów Wielkopolski, Legnica, Lubin"],
+                                    ["Wschód", "Varsóvia, Lublin, Białystok, Rzeszów, Chełm, Zamość, Przemyśl"],
+                                    ["Południe", "Cracóvia, Katowice, Częstochowa, Opole, Bielsko-Biała, Gliwice, Tychy"]]
     
+
+
+
+    nomesMStringServia = "Nikola, Marko, Stefan, Aleksandar, Ivan, Petar, Milos, Jovan, Dusan, Luka, Dragan, Dejan, Nenad, Goran, Slobodan, Zoran, Bojan, Vuk, Aleksandar, Darko, Milan, Nebojša, Duško, Dalibor, Nemanja, Lazar, Igor, Mihajlo, Branko, Predrag, Vladimir, Bogdan, Radovan, Miroslav, Sava, Zdravko, Velimir, Stevan, Rade, Zlatko"
+    nomesFStringServia = "Ana, Milica, Jovana, Marija, Ivana, Katarina, Aleksandra, Nataša, Maja, Dragana, Svetlana, Tatjana, Tamara, Sanja, Vesna, Ivona, Danijela, Jelena, Ana-Marija, Bojana, Nikolina, Zorica, Gordana, Snežana, Dušica, Milena, Radmila, Marina, Ljiljana, Jasmina, Olga, Slavica, Ružica, Biljana, Verica, Mirjana, Jelica, Neda, Dijana, Nenadina"
+    sobrenomesStringServia = "Petrović, Jovanović, Nikolić, Marković, Đorđević, Stojanović, Ilić, Pavlović, Đukić, Radovanović, Kovačević, Tomić, Milić, Stanković, Milićević, Popović, Vasić, Simić, Lukić, Đorđević, Milosavljević, Ranković, Stevanović, Ristić, Novaković, Janković, Dimitrijević, Todorović, Pantić, Vuković, Aleksić, Perić, Stojiljković, Đurić, Matić, Milenković, Simić, Vukadinović, Arsić, Živković"
+    regioesECidadesStringsServia = [["Норте", "Belgrado, Novi Sad, Subotica"],
+                                    ["Оесте", "Šabac, Valjevo, Užice"],
+                                    ["Лесте", "Niš, Kragujevac, Zaječar"],
+                                    ["Сул", "Pristina, Novi Pazar, Leskovac"]]
     
 
     nomesMBrasil = nomesMStringBrasil.split(", ")
@@ -1932,6 +1952,12 @@ def gerarListas():
     nomesMAlemanha = nomesMStringAlemanha.split(", ")
     nomesFAlemanha = nomesFStringAlemanha.split(", ")
     sobrenomesAlemanha = sobrenomesStringAlemanha.split(", ")
+    nomesMPolonia = nomesMStringPolonia.split(", ")
+    nomesFPolonia = nomesFStringPolonia.split(", ")
+    sobrenomesPolonia = sobrenomesStringPolonia.split(", ")
+    nomesMServia = nomesMStringServia.split(", ")
+    nomesFServia = nomesFStringServia.split(", ")
+    sobrenomesServia = sobrenomesStringServia.split(", ")
 
 
     regioesECidadesBrasil = []
@@ -1966,8 +1992,16 @@ def gerarListas():
     for tupla in regioesECidadesStringsAlemanha:
         cidadesRegiao = tupla[1].split(", ")
         regioesECidadesAlemanha.append([tupla[0],cidadesRegiao])
-    paisERegiaoECidade = [["Brasil",regioesECidadesBrasil],["Japão",regioesECidadesJapao],["Itália",regioesECidadesItalia],["Estados Unidos",regioesECidadesEUA],["Rússia",regioesECidadesRussia],["Argentina",regioesECidadesArgentina],["França",regioesECidadesFranca],["Alemanha",regioesECidadesAlemanha]]
-    paisENomesESobrenomes = [["Brasil",nomesMBrasil,nomesFBrasil,sobrenomesBrasil],["Japão",nomesMJapao,nomesFJapao,sobrenomesJapao],["Itália",nomesMItalia,nomesFItalia,sobrenomesItalia],["Estados Unidos",nomesMEUA,nomesFEUA,sobrenomesEUA],["Rússia",nomesMRussia,nomesFRussia,sobrenomesRussia],["Argentina",nomesMArgentina,nomesFArgentina,sobrenomesArgentina],["França",nomesMFranca,nomesFFranca,sobrenomesFranca],["Alemanha",nomesMAlemanha,nomesFAlemanha,sobrenomesAlemanha]]
+    regioesECidadesPolonia = []
+    for tupla in regioesECidadesStringsPolonia:
+        cidadesRegiao = tupla[1].split(", ")
+        regioesECidadesPolonia.append([tupla[0],cidadesRegiao])
+    regioesECidadesServia = []
+    for tupla in regioesECidadesStringsServia:
+        cidadesRegiao = tupla[1].split(", ")
+        regioesECidadesServia.append([tupla[0],cidadesRegiao])
+    paisERegiaoECidade = [["Brasil",regioesECidadesBrasil],["Japão",regioesECidadesJapao],["Itália",regioesECidadesItalia],["Estados Unidos",regioesECidadesEUA],["Rússia",regioesECidadesRussia],["Argentina",regioesECidadesArgentina],["França",regioesECidadesFranca],["Alemanha",regioesECidadesAlemanha],["Polônia",regioesECidadesPolonia],["Sérvia",regioesECidadesServia]]
+    paisENomesESobrenomes = [["Brasil",nomesMBrasil,nomesFBrasil,sobrenomesBrasil],["Japão",nomesMJapao,nomesFJapao,sobrenomesJapao],["Itália",nomesMItalia,nomesFItalia,sobrenomesItalia],["Estados Unidos",nomesMEUA,nomesFEUA,sobrenomesEUA],["Rússia",nomesMRussia,nomesFRussia,sobrenomesRussia],["Argentina",nomesMArgentina,nomesFArgentina,sobrenomesArgentina],["França",nomesMFranca,nomesFFranca,sobrenomesFranca],["Alemanha",nomesMAlemanha,nomesFAlemanha,sobrenomesAlemanha],["Polônia",nomesMPolonia,nomesFPolonia,sobrenomesPolonia],["Sérvia",nomesMServia,nomesFServia,sobrenomesServia]]
     return paisERegiaoECidade, paisENomesESobrenomes
 
 def preencher_time_com_jogadores_randomizados():
