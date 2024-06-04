@@ -176,7 +176,16 @@ def menu_jogar_temporada(temporada):
                             mediaBloqueio /= pesoTotal
                             mediaRecepcoes /= pesoTotal
                             mediaRallysPorSet /= pesoTotal
-                        mediasTime1.append([mediaPontos, mediaLevantamentos, mediaBloqueio, mediaRecepcoes, mediaRallysPorSet])
+                        mult_pais = 1
+                        if(jogador.pais_nascimento == "Estados Unidos"):
+                            mult_pais = 1.05
+                        if(jogador.pais_nascimento == "Itália"):
+                            mult_pais = 1.1
+                        if(jogador.pais_nascimento == "Japão"):
+                            mult_pais = 1.15
+                        if(jogador.pais_nascimento == "Brasil"):
+                            mult_pais = 1.2
+                        mediasTime1.append([(mult_pais * mediaPontos), (mult_pais * mediaLevantamentos), (mult_pais * mediaBloqueio), (mult_pais * mediaRecepcoes), mediaRallysPorSet])
 
                     for jogador in partidas_avulsas_validas[escolha_partida - 1].time2.elenco_atual:
                         peso = 1
@@ -213,7 +222,16 @@ def menu_jogar_temporada(temporada):
                             mediaBloqueio /= pesoTotal
                             mediaRecepcoes /= pesoTotal
                             mediaRallysPorSet /= pesoTotal
-                        mediasTime2.append([mediaPontos, mediaLevantamentos, mediaBloqueio, mediaRecepcoes, mediaRallysPorSet])
+                        mult_pais = 1
+                        if(jogador.pais_nascimento == "Estados Unidos"):
+                            mult_pais = 1.05
+                        if(jogador.pais_nascimento == "Itália"):
+                            mult_pais = 1.1
+                        if(jogador.pais_nascimento == "Japão"):
+                            mult_pais = 1.15
+                        if(jogador.pais_nascimento == "Brasil"):
+                            mult_pais = 1.2
+                        mediasTime2.append([(mult_pais * mediaPontos), (mult_pais * mediaLevantamentos), (mult_pais * mediaBloqueio), (mult_pais * mediaRecepcoes), mediaRallysPorSet])
 
                     escolha_randomizar = input("Deseja randomizar a partida? ('s' ou 'n') ")
                     if escolha_randomizar == 's':
@@ -1887,6 +1905,8 @@ def gerarListas():
                                     ["Westen", "Colônia, Düsseldorf, Dortmund, Essen, Bonn"],
                                     ["Ost", "Berlim, Dresden, Leipzig, Potsdam, Rostock"],
                                     ["Süd", "Munique, Frankfurt, Stuttgart, Nurembergue, Friburgo"]]
+    
+    
 
     nomesMBrasil = nomesMStringBrasil.split(", ")
     nomesFBrasil = nomesFStringBrasil.split(", ")
@@ -1911,7 +1931,8 @@ def gerarListas():
     sobrenomesFranca = sobrenomesStringFranca.split(", ")
     nomesMAlemanha = nomesMStringAlemanha.split(", ")
     nomesFAlemanha = nomesFStringAlemanha.split(", ")
-    sobrenomesAlemanha = sobrenomesStringAlemanha.split(", ") 
+    sobrenomesAlemanha = sobrenomesStringAlemanha.split(", ")
+
 
     regioesECidadesBrasil = []
     for tupla in regioesECidadesStringsBrasil:
