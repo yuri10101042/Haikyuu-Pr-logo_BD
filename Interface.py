@@ -546,7 +546,6 @@ def criar_partidaavulsa(temporada):
 
 
 
-
 def menu_consulta():
     while True:
         print("\nMenu de Consulta:")
@@ -889,7 +888,6 @@ def exibe_ranking_jogador(jogadores, averages, pontos, levantamentos, recepcoes,
     print("-" * 100)
     for i, (jogador,avg,pts,lev,rec,blo,rall) in enumerate(sorted_jogadores, start=1):
         print(f"{i:<12}{jogador.nome:<22}{avg:<10.2f}{pts:<9}{lev:<14}{rec:<14}{blo:<14}{rall:<14}")
-
 
 def exibe_ranking_times(times, averages):
     sorted_times = sorted(zip(times, averages), key=lambda x: x[1], reverse=True)
@@ -1584,6 +1582,7 @@ def consultar_jogadores(lista_jogadores):
     consultar_jogador(jogador_escolhido)
 
 
+
 def menu_edicao_dados():
     print("\nEscolha a opção de Edição de Dados:")
     print("1- Edição Normal")
@@ -1798,8 +1797,6 @@ def aumentar_altura_dos_jogadores():
             if jogador.idade == 19:
                 jogador.altura += 0.01
 
-
-
 def passar_categoria_ou_aposentar():
     for jogador in historico.Jogadores:
         if jogador.categoria == "Colegial" and jogador.idade == 19:
@@ -1816,7 +1813,6 @@ def passar_categoria_ou_aposentar():
                     if jogador in time.elenco_atual:
                         time.remover_jogador(jogador)
                 print("Jogador "+jogador.nome+f" se aposentou {jogador.idade} anos.")
-            
 
 def passar_idade_dos_jogadores():
     for jogador in historico.Jogadores:
@@ -2425,8 +2421,6 @@ def criar_modalidade():
 
     print(f"\nModalidade {nome} criada com sucesso!\n")
 
-
-
 def menu_edicao_avancada():
     while True:
         print("\nEscolha a opção de Edição Avançada:")
@@ -2969,7 +2963,6 @@ def editar_time(time):
     else:
         print("\nAtributo inválido. Voltando ao menu anterior.\n")
         return
-
 
 def editar_times(lista_times):
     global historico
