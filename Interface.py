@@ -1743,30 +1743,30 @@ def preencher_times_colegiais_com_jogadores_novos_randomizados():
                             break
                         
                     if historico.Times[escolha-1].categoria == "Colegial":
-                        idade_escolhida = 15
+                        idade_escolhida = 16
                     if historico.Times[escolha-1].categoria == "Profissional":
-                        numeros = [i for i in range(18, 41)]
-                        probabilidades = [1 / (i - 17) for i in numeros]
+                        numeros = [i for i in range(19, 41)]
+                        probabilidades = [1 / (i - 18) for i in numeros]
                         idade_escolhida = random.choices(numeros, weights=probabilidades, k=1)[0]
 
-                    if idade_escolhida == 15:
+                    if idade_escolhida == 16:
                         if sexo_escolhido == "Homem":
                             alturas = [round(numero/100,2) for numero in range(151, 201)]
                         if sexo_escolhido == "Mulher":
                             alturas = [round(numero/100,2) for numero in range(151, 191)]
-                    if idade_escolhida == 16:
+                    if idade_escolhida == 17:
                         if sexo_escolhido == "Homem":
                             alturas = [round(numero/100,2) for numero in range(151, 206)]
                         if sexo_escolhido == "Mulher":
                             alturas = [round(numero/100,2) for numero in range(151, 191)]
-                    if idade_escolhida == 17:
+                    if idade_escolhida == 18:
                         if sexo_escolhido == "Homem":
                             alturas = [round(numero/100,2) for numero in range(151, 211)]
                         if sexo_escolhido == "Mulher":
                             alturas = [round(numero/100,2) for numero in range(151, 191)]
-                    if idade_escolhida > 17:
+                    if idade_escolhida > 18:
                         if sexo_escolhido == "Homem":
-                            alturas = [round(numero/100,2) for numero in range(151, 216)]
+                            alturas = [round(numero/100,2) for numero in range(151, 221)]
                         if sexo_escolhido == "Mulher":
                             alturas = [round(numero/100,2) for numero in range(151, 192)]
 
@@ -1792,24 +1792,24 @@ def preencher_times_colegiais_com_jogadores_novos_randomizados():
 def aumentar_altura_dos_jogadores():
     for jogador in historico.Jogadores:
         if jogador.genero == "Homem":
-            if jogador.idade in [16,17,18]:
+            if jogador.idade in [17,18,19]:
                 jogador.altura += random.choice([0.01,0.02,0.03,0.04,0.05])
         if jogador.genero == "Mulher":
-            if jogador.idade == 18:
+            if jogador.idade == 19:
                 jogador.altura += 0.01
 
 
 
 def passar_categoria_ou_aposentar():
     for jogador in historico.Jogadores:
-        if jogador.categoria == "Colegial" and jogador.idade == 18:
+        if jogador.categoria == "Colegial" and jogador.idade == 19:
             jogador.categoria = "Profissional"
             for time in historico.Times:
                 if jogador in time.elenco_atual:
                     time.remover_jogador(jogador)
             print("Jogador "+jogador.nome+" passou para Profissional e está sem time.")
-        if jogador.categoria == "Profissional" and jogador.idade > 30:
-            probabilidade = 30 + ((jogador.idade-30)*5)
+        if jogador.categoria == "Profissional" and jogador.idade >= 35:
+            probabilidade = 50 + ((jogador.idade-35)*5)
             if random.randint(0,100) <= probabilidade:
                 jogador.categoria = "Aposentadoria"
                 for time in historico.Times:
@@ -2079,30 +2079,30 @@ def preencher_time_com_jogadores_randomizados():
                     break
                 
             if historico.Times[escolha-1].categoria == "Colegial":
-                idade_escolhida = random.choice([15,16,17])
+                idade_escolhida = random.choice([16,17,18])
             if historico.Times[escolha-1].categoria == "Profissional":
-                numeros = [i for i in range(18, 41)]
-                probabilidades = [1 / (i - 17) for i in numeros]
+                numeros = [i for i in range(19, 41)]
+                probabilidades = [1 / (i - 18) for i in numeros]
                 idade_escolhida = random.choices(numeros, weights=probabilidades, k=1)[0]
 
-            if idade_escolhida == 15:
+            if idade_escolhida == 16:
                 if sexo_escolhido == "Homem":
                     alturas = [round(numero/100,2) for numero in range(151, 201)]
                 if sexo_escolhido == "Mulher":
                     alturas = [round(numero/100,2) for numero in range(151, 191)]
-            if idade_escolhida == 16:
+            if idade_escolhida == 17:
                 if sexo_escolhido == "Homem":
                     alturas = [round(numero/100,2) for numero in range(151, 206)]
                 if sexo_escolhido == "Mulher":
                     alturas = [round(numero/100,2) for numero in range(151, 191)]
-            if idade_escolhida == 17:
+            if idade_escolhida == 18:
                 if sexo_escolhido == "Homem":
                     alturas = [round(numero/100,2) for numero in range(151, 211)]
                 if sexo_escolhido == "Mulher":
                     alturas = [round(numero/100,2) for numero in range(151, 191)]
-            if idade_escolhida > 17:
+            if idade_escolhida > 18:
                 if sexo_escolhido == "Homem":
-                    alturas = [round(numero/100,2) for numero in range(151, 216)]
+                    alturas = [round(numero/100,2) for numero in range(151, 221)]
                 if sexo_escolhido == "Mulher":
                     alturas = [round(numero/100,2) for numero in range(151, 192)]
 
