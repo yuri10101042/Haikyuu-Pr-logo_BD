@@ -21,26 +21,28 @@ class Set:
         print(f"Escolha os jogadores de {time1.nome} que iniciarão em quadra (digite 's' para sair):")
         for i, jogador in enumerate(time1.elenco_atual, start=1):
             print(f"{i}. {jogador.nome}")
-        while True:
-            escolha = input("Digite o número do jogador ou 's' para sair: ")
-            if escolha.lower() == 's':
-                break
+        while time1_em_quadra.len() < modalidade.quantidade_jogadores_em_quadra:
+            escolha = input("Digite o número do jogador:")
             if escolha.isdigit() and 1 <= int(escolha) <= len(time1.elenco_atual):
                 jogador = time1.elenco_atual[int(escolha) - 1]
-                time1_em_quadra.append(jogador)
+                if jogador in time1_em_quadra:
+                    print("Jogador já selecionado. Tente novamente.")
+                else:
+                    time1_em_quadra.append(jogador)
             else:
                 print("Opção inválida. Tente novamente.")
 
         print(f"Escolha os jogadores de {time2.nome} que iniciarão em quadra (digite 's' para sair):")
         for i, jogador in enumerate(time2.elenco_atual, start=1):
             print(f"{i}. {jogador.nome}")
-        while True:
-            escolha = input("Digite o número do jogador ou 's' para sair: ")
-            if escolha.lower() == 's':
-                break
+        while time2_em_quadra.len() < modalidade.quantidade_jogadores_em_quadra:
+            escolha = input("Digite o número do jogador: ")
             if escolha.isdigit() and 1 <= int(escolha) <= len(time2.elenco_atual):
                 jogador = time2.elenco_atual[int(escolha) - 1]
-                time2_em_quadra.append(jogador)
+                if jogador in time2_em_quadra:
+                    print("Jogador já selecionado. Tente novamente.")
+                else:
+                    time2_em_quadra.append(jogador)
             else:
                 print("Opção inválida. Tente novamente.")
 
@@ -134,7 +136,7 @@ class Set:
         # Restrição: permitir apenas um jogador com posição de libero em quadra por vez
         libero_em_quadra_time1 = False
 
-        for _ in range(min(6, len(time1.elenco_atual))):
+        for _ in range(min(modalidade.quantidade_jogadores_em_quadra, len(time1.elenco_atual))):
             while True:
                 jogador = random.choices(jogadores_disponiveis_time1, weights=rallysPorSet_time1_temp, k=1)[0]
                 if jogador.posicao == 'Libero' and libero_em_quadra_time1:
@@ -154,7 +156,7 @@ class Set:
         # Restrição: permitir apenas um jogador com posição de libero em quadra por vez
         libero_em_quadra_time2 = False
 
-        for _ in range(min(6, len(time2.elenco_atual))):
+        for _ in range(min(modalidade.quantidade_jogadores_em_quadra, len(time2.elenco_atual))):
             while True:
                 jogador = random.choices(jogadores_disponiveis_time2, weights=rallysPorSet_time2_temp, k=1)[0]
                 if jogador.posicao == 'Libero' and libero_em_quadra_time2:

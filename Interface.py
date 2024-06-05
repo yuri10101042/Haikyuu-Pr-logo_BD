@@ -2418,8 +2418,9 @@ def criar_modalidade():
     nome = input("Nome da Modalidade: ")
     pontos_max_set = int(input("Pontos Máximos por Set: "))
     sets_max = int(input("Número Máximo de Sets: "))
+    quant_jogadores = int(input("Quantidade de Jogadores Por Time em Quadra: "))
 
-    nova_modalidade = Modalidade(nome, pontos_max_set, sets_max)
+    nova_modalidade = Modalidade(nome, pontos_max_set, sets_max, quant_jogadores)
     historico.Modalidades.append(nova_modalidade)
 
     print(f"\nModalidade {nome} criada com sucesso!\n")
