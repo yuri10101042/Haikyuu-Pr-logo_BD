@@ -1547,7 +1547,7 @@ def consultar_times(lista_times):
 
 def consultar_jogador(jogador):
     print("\nAtributos disponíveis para consulta:")
-    atributos = ["nome", "idade", "altura", "regiao_nascimento", "pais_nascimento", "cidade_nascimento", "posicao", "maoDominante", "numeroCamisa", "genero"]
+    atributos = ["nome", "idade", "altura", "regiao_nascimento", "pais_nascimento", "cidade_nascimento", "posicao", "maoDominante", "genero"]
     for j, atributo in enumerate(atributos, start=1):
         print(f"{j}. {atributo.capitalize()}")
 
@@ -1780,11 +1780,9 @@ def preencher_times_colegiais_com_jogadores_novos_randomizados():
 
                     maoDominante_escolhida = random.choices(["Destro","Canhoto","Ambidestro"], weights=[0.7,0.2,0.1], k=1)[0]
 
-                    numeroCamisa_escolhida = random.choice([numero for numero in range(1, 100)])
-
                     categoria_escolhida = historico.Times[escolha-1].categoria
 
-                    novo_jogador = JogadorVolei(nomeCompleto_escolhido, idade_escolhida, altura_escolhida, cidade_escolhida, regiao_escolhida, pais_escolhido, posicao_escolhida, categoria_escolhida, maoDominante_escolhida, numeroCamisa_escolhida, sexo_escolhido)
+                    novo_jogador = JogadorVolei(nomeCompleto_escolhido, idade_escolhida, altura_escolhida, cidade_escolhida, regiao_escolhida, pais_escolhido, posicao_escolhida, categoria_escolhida, maoDominante_escolhida, sexo_escolhido)
                     historico.Jogadores.append(novo_jogador)
                     historico.Times[escolha-1].adicionar_jogador(novo_jogador)
 
@@ -2113,11 +2111,9 @@ def preencher_time_com_jogadores_randomizados():
 
             maoDominante_escolhida = random.choices(["Destro","Canhoto","Ambidestro"], weights=[0.7,0.2,0.1], k=1)[0]
 
-            numeroCamisa_escolhida = random.choice([numero for numero in range(1, 100)])
-
             categoria_escolhida = historico.Times[escolha-1].categoria
 
-            novo_jogador = JogadorVolei(nomeCompleto_escolhido, idade_escolhida, altura_escolhida, cidade_escolhida, regiao_escolhida, pais_escolhido, posicao_escolhida, categoria_escolhida, maoDominante_escolhida, numeroCamisa_escolhida, sexo_escolhido)
+            novo_jogador = JogadorVolei(nomeCompleto_escolhido, idade_escolhida, altura_escolhida, cidade_escolhida, regiao_escolhida, pais_escolhido, posicao_escolhida, categoria_escolhida, maoDominante_escolhida, sexo_escolhido)
             historico.Jogadores.append(novo_jogador)
             historico.Times[escolha-1].adicionar_jogador(novo_jogador)
 
@@ -2270,9 +2266,7 @@ def criar_jogador():
     categorias = ["Colegial", "Profissional"]
     categoria = categorias[int(escolha_categoria) - 1]
 
-    numeroCamisa = input("Número da Camisa: ")
-
-    novo_jogador = JogadorVolei(nome, idade, altura, cidade_nascimento, regiao_nascimento, pais_nascimento, posicao, categoria, maoDominante, numeroCamisa, genero)
+    novo_jogador = JogadorVolei(nome, idade, altura, cidade_nascimento, regiao_nascimento, pais_nascimento, posicao, categoria, maoDominante, genero)
     historico.Jogadores.append(novo_jogador)
 
     print(f"\nJogador {nome} criado com sucesso!\n") 
@@ -2294,10 +2288,9 @@ def criar_jogador_por_string(info_string):
     pais_nascimento = info_list[7]
     posicao = info_list[8]
     categoria = info_list[9]
-    numeroCamisa = info_list[10]
 
     # Cria o jogador usando a função criar_jogador
-    novo_jogador = JogadorVolei(nome, idade, altura, cidade_nascimento, regiao_nascimento, pais_nascimento, posicao, categoria, maoDominante, numeroCamisa, genero)
+    novo_jogador = JogadorVolei(nome, idade, altura, cidade_nascimento, regiao_nascimento, pais_nascimento, posicao, categoria, maoDominante, genero)
     historico.Jogadores.append(novo_jogador)
 
     print(f"\nJogador {nome} criado com sucesso!\n")
@@ -2985,7 +2978,7 @@ def editar_times(lista_times):
 
 def editar_jogador(jogador):
     print("\nAtributos disponíveis para edição:")
-    atributos = ["nome", "idade", "altura", "cidade_nascimento", "regiao_nascimento", "pais_nascimento", "posicao", "maoDominante", "camisaNumero", "genero"]
+    atributos = ["nome", "idade", "altura", "cidade_nascimento", "regiao_nascimento", "pais_nascimento", "posicao", "maoDominante", "genero"]
     for j, atributo in enumerate(atributos, start=1):
         print(f"{j}. {atributo.capitalize()}")
 
