@@ -55,7 +55,7 @@ class Rally:
 
                 print("Que jogador fez o ponto?")
                 for i, jogador in enumerate(elenco_atual):
-                    print(f"{i + 1}. {jogador.nome}")
+                    print(f"{i + 1}. {jogador.nome} - {jogador.posicao}")
                 print(f"{len(elenco_atual) + 1}. Erro do Time Adversário")
 
                 numero_jogador = input("Digite o número do jogador: ")
@@ -88,7 +88,7 @@ class Rally:
 
                 print("Que jogador fez o bloqueio?")
                 for i, jogador in enumerate(elenco_atual):
-                    print(f"{i + 1}. {jogador.nome}")
+                    print(f"{i + 1}. {jogador.nome} - {jogador.posicao}")
 
                 numero_jogador = input("Digite o número do jogador: ")
 
@@ -114,7 +114,7 @@ class Rally:
 
                 print("Que jogador fez o levantamento?")
                 for i, jogador in enumerate(elenco_atual):
-                    print(f"{i + 1}. {jogador.nome}")
+                    print(f"{i + 1}. {jogador.nome} - {jogador.posicao}")
 
                 numero_jogador = input("Digite o número do jogador: ")
 
@@ -140,7 +140,7 @@ class Rally:
 
                 print("Que jogador fez a recepção?")
                 for i, jogador in enumerate(elenco_atual):
-                    print(f"{i + 1}. {jogador.nome}")
+                    print(f"{i + 1}. {jogador.nome} - {jogador.posicao}")
 
                 numero_jogador = input("Digite o número do jogador: ")
 

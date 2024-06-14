@@ -20,7 +20,7 @@ class Set:
         # Escolher jogadores de cada time que iniciarão em quadra
         print(f"Escolha os jogadores de {time1.nome} que iniciarão em quadra (digite 's' para sair):")
         for i, jogador in enumerate(time1.elenco_atual, start=1):
-            print(f"{i}. {jogador.nome}")
+            print(f"{i}. {jogador.nome} - {jogador.posicao}")
         while time1_em_quadra.len() < modalidade.quantidade_jogadores_em_quadra:
             escolha = input("Digite o número do jogador:")
             if escolha.isdigit() and 1 <= int(escolha) <= len(time1.elenco_atual):
@@ -34,7 +34,7 @@ class Set:
 
         print(f"Escolha os jogadores de {time2.nome} que iniciarão em quadra (digite 's' para sair):")
         for i, jogador in enumerate(time2.elenco_atual, start=1):
-            print(f"{i}. {jogador.nome}")
+            print(f"{i}. {jogador.nome} - {jogador.posicao}")
         while time2_em_quadra.len() < modalidade.quantidade_jogadores_em_quadra:
             escolha = input("Digite o número do jogador: ")
             if escolha.isdigit() and 1 <= int(escolha) <= len(time2.elenco_atual):
@@ -87,7 +87,7 @@ class Set:
                         jogadores_nao_em_quadra = [jogador for jogador in time1.elenco_atual if jogador not in time1_em_quadra]
                         print(f"Jogadores disponíveis de {time1.nome} para substituição:")
                         for i, jogador in enumerate(jogadores_nao_em_quadra, start=1):
-                            print(f"{i}. {jogador.nome}")
+                            print(f"{i}. {jogador.nome} - {jogador.posicao}")
                         numero_jogador_sai = int(input("Digite o número do jogador que sairá: "))
                         numero_jogador_entra = int(input("Digite o número do jogador que entrará: "))
                         if 1 <= numero_jogador_sai <= len(time1_em_quadra) and 1 <= numero_jogador_entra <= len(jogadores_nao_em_quadra):
@@ -103,7 +103,7 @@ class Set:
                         jogadores_nao_em_quadra = [jogador for jogador in time2.elenco_atual if jogador not in time2_em_quadra]
                         print(f"Jogadores disponíveis de {time2.nome} para substituição:")
                         for i, jogador in enumerate(jogadores_nao_em_quadra, start=1):
-                            print(f"{i}. {jogador.nome}")
+                            print(f"{i}. {jogador.nome} - {jogador.posicao}")
                         numero_jogador_sai = int(input("Digite o número do jogador que sairá: "))
                         numero_jogador_entra = int(input("Digite o número do jogador que entrará: "))
                         if 1 <= numero_jogador_sai <= len(time2_em_quadra) and 1 <= numero_jogador_entra <= len(jogadores_nao_em_quadra):
@@ -172,10 +172,10 @@ class Set:
         # Escolher jogadores de cada time que iniciarão em quadra
         print(f"Jogadores que iniciarão em quadra de {time1.nome}:")
         for jogador in time1_em_quadra:
-            print(f"- {jogador.nome}")
+            print(f"- {jogador.nome} - {jogador.posicao}")
         print(f"Jogadores que iniciarão em quadra de {time2.nome}:")
         for jogador in time2_em_quadra:
-            print(f"- {jogador.nome}")
+            print(f"- {jogador.nome} - {jogador.posicao}")
 
         while True:
 
@@ -248,10 +248,10 @@ class Set:
             # Escolher jogadores de cada time que iniciarão em quadra
             print(f"Jogadores que iniciarão em quadra de {time1.nome}:")
             for jogador in time1_em_quadra:
-                print(f"- {jogador.nome}")
+                print(f"- {jogador.nome} - {jogador.posicao}")
             print(f"Jogadores que iniciarão em quadra de {time2.nome}:")
             for jogador in time2_em_quadra:
-                print(f"- {jogador.nome}")
+                print(f"- {jogador.nome} - {jogador.posicao}")
 
 
     def PontosPorJogadorSet(self, jogador):
