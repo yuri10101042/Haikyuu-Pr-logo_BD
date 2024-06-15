@@ -72,7 +72,10 @@ class Temporada:
             if partida.vencedor != None:
                 total_rallys_por_set += partida.contar_rallys_por_set_do_jogador(jogador)
                 i+=1
-        return total_rallys_por_set/i
+        if i != 0:
+            return total_rallys_por_set/i
+        else:
+            return 0
 
 
     def jogadorAverageTemporada(self, jogador):
