@@ -21,7 +21,7 @@ class Set:
         print(f"Escolha os jogadores de {time1.nome} que iniciarão em quadra (digite 's' para sair):")
         for i, jogador in enumerate(time1.elenco_atual, start=1):
             print(f"{i}. {jogador.nome} - {jogador.posicao}")
-        while time1_em_quadra.len() < modalidade.quantidade_jogadores_em_quadra:
+        while len(time1_em_quadra) < modalidade.quantidade_jogadores_em_quadra:
             escolha = input("Digite o número do jogador:")
             if escolha.isdigit() and 1 <= int(escolha) <= len(time1.elenco_atual):
                 jogador = time1.elenco_atual[int(escolha) - 1]
@@ -35,7 +35,7 @@ class Set:
         print(f"Escolha os jogadores de {time2.nome} que iniciarão em quadra (digite 's' para sair):")
         for i, jogador in enumerate(time2.elenco_atual, start=1):
             print(f"{i}. {jogador.nome} - {jogador.posicao}")
-        while time2_em_quadra.len() < modalidade.quantidade_jogadores_em_quadra:
+        while len(time2_em_quadra) < modalidade.quantidade_jogadores_em_quadra:
             escolha = input("Digite o número do jogador: ")
             if escolha.isdigit() and 1 <= int(escolha) <= len(time2.elenco_atual):
                 jogador = time2.elenco_atual[int(escolha) - 1]
