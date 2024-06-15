@@ -80,7 +80,7 @@ class Campeonato:
                 mediasTime2 = mediasTimes[time2_indice]
                 if partida.vencedor == None:
                     partida.SetPorSetRandomizado(mediasTime1,mediasTime2)
-            if self.fases[-1].numero != self.TotalFases:
+            if self.fases[-1].numero == self.TotalFases:
                 break
         self.ClassificacaoTimes.append(self.fases[-1].partidas[0].vencedor.nome)
         self.ClassificacaoTimes.append(self.fases[-1].partidas[0].perdedor.nome)
