@@ -81,41 +81,45 @@ class Set:
             while True:
                 substituir = input("Deseja fazer substituições? (S/N): ")
                 if substituir.upper() == "S":
-                    time_substituir = input("Qual time deseja fazer substituições? (1 para Time 1, 2 para Time 2): ")
-                    if time_substituir == "1":
+                    while True:
                         print(f"Jogadores em quadra de {time1.nome}: {', '.join(jogador.nome for jogador in time1_em_quadra)}")
                         jogadores_nao_em_quadra = [jogador for jogador in time1.elenco_atual if jogador not in time1_em_quadra]
                         print(f"Jogadores disponíveis de {time1.nome} para substituição:")
                         for i, jogador in enumerate(jogadores_nao_em_quadra, start=1):
                             print(f"{i}. {jogador.nome} - {jogador.posicao}")
-                        numero_jogador_sai = int(input("Digite o número do jogador que sairá: "))
-                        numero_jogador_entra = int(input("Digite o número do jogador que entrará: "))
+                        numero_jogador_sai = int(input("Digite o número do jogador que sairá (ou '0' para sair): "))
+                        if(numero_jogador_sai == 0):
+                            break
+                        numero_jogador_entra = int(input("Digite o número do jogador que entrará (ou '0' para sair): "))
+                        if(numero_jogador_entra == 0):
+                            break
                         if 1 <= numero_jogador_sai <= len(time1_em_quadra) and 1 <= numero_jogador_entra <= len(jogadores_nao_em_quadra):
                             jogador_sai = time1_em_quadra[numero_jogador_sai - 1]
                             jogador_entra = jogadores_nao_em_quadra[numero_jogador_entra - 1]
                             time1_em_quadra.remove(jogador_sai)
                             time1_em_quadra.append(jogador_entra)
-                            break
                         else:
                             print("Opção inválida. Tente novamente.")
-                    elif time_substituir == "2":
+                    while True:
                         print(f"Jogadores em quadra de {time2.nome}: {', '.join(jogador.nome for jogador in time2_em_quadra)}")
                         jogadores_nao_em_quadra = [jogador for jogador in time2.elenco_atual if jogador not in time2_em_quadra]
                         print(f"Jogadores disponíveis de {time2.nome} para substituição:")
                         for i, jogador in enumerate(jogadores_nao_em_quadra, start=1):
                             print(f"{i}. {jogador.nome} - {jogador.posicao}")
-                        numero_jogador_sai = int(input("Digite o número do jogador que sairá: "))
-                        numero_jogador_entra = int(input("Digite o número do jogador que entrará: "))
+                        numero_jogador_sai = int(input("Digite o número do jogador que sairá (ou '0' para sair): "))
+                        if(numero_jogador_sai == 0):
+                            break
+                        numero_jogador_entra = int(input("Digite o número do jogador que entrará (ou '0' para sair): "))
+                        if(numero_jogador_entra == 0):
+                            break
                         if 1 <= numero_jogador_sai <= len(time2_em_quadra) and 1 <= numero_jogador_entra <= len(jogadores_nao_em_quadra):
                             jogador_sai = time2_em_quadra[numero_jogador_sai - 1]
                             jogador_entra = jogadores_nao_em_quadra[numero_jogador_entra - 1]
                             time2_em_quadra.remove(jogador_sai)
                             time2_em_quadra.append(jogador_entra)
-                            break
                         else:
                             print("Opção inválida. Tente novamente.")
-                    else:
-                        print("Opção inválida. Tente novamente.")
+                    break
                 elif substituir.upper() == "N":
                     break
                 else:
