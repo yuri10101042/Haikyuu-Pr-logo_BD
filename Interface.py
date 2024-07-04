@@ -168,38 +168,38 @@ def menu_jogar_temporada(temporada):
                                             peso /= 2
                                     break
                             
-                                else:
-                                    if(jogador.posicao == "Oposto"):
-                                        mediaPontos = 0.5
-                                        mediaLevantamentos = 0.05
-                                        mediaBloqueio = 0.2
-                                        mediaRecepcoes = 0.1
-                                        mediaRallysPorSet = 7
-                                    if(jogador.posicao == "Ponteiro"):
-                                        mediaPontos = 0.3
-                                        mediaLevantamentos = 0.05
-                                        mediaBloqueio = 0.2
-                                        mediaRecepcoes = 0.3
-                                        mediaRallysPorSet = 9
-                                    if(jogador.posicao == "Levantador"):
-                                        mediaPontos = 0.1
-                                        mediaLevantamentos = 1
-                                        mediaBloqueio = 0.1
-                                        mediaRecepcoes = 0.05
-                                        mediaRallysPorSet = 10
-                                    if(jogador.posicao == "Central"):
-                                        mediaPontos = 0.3
-                                        mediaLevantamentos = 0.05
-                                        mediaBloqueio = 0.5
-                                        mediaRecepcoes = 0.05
-                                        mediaRallysPorSet = 5
-                                    if(jogador.posicao == "Líbero"):
-                                        mediaPontos = 0
-                                        mediaLevantamentos = 0.2
-                                        mediaBloqueio = 0
-                                        mediaRecepcoes = 1
-                                        mediaRallysPorSet = 5
-                                    break
+                            else:
+                                if(jogador.posicao == "Oposto"):
+                                    mediaPontos = 0.7
+                                    mediaLevantamentos = 0.05
+                                    mediaBloqueio = 0.2
+                                    mediaRecepcoes = 0.1
+                                    mediaRallysPorSet = 7
+                                if(jogador.posicao == "Ponteiro"):
+                                    mediaPontos = 0.5
+                                    mediaLevantamentos = 0.05
+                                    mediaBloqueio = 0.2
+                                    mediaRecepcoes = 0.5
+                                    mediaRallysPorSet = 9
+                                if(jogador.posicao == "Levantador"):
+                                    mediaPontos = 0.1
+                                    mediaLevantamentos = 1
+                                    mediaBloqueio = 0.1
+                                    mediaRecepcoes = 0.1
+                                    mediaRallysPorSet = 10
+                                if(jogador.posicao == "Central"):
+                                    mediaPontos = 0.3
+                                    mediaLevantamentos = 0.05
+                                    mediaBloqueio = 0.7
+                                    mediaRecepcoes = 0.1
+                                    mediaRallysPorSet = 5
+                                if(jogador.posicao == "Líbero"):
+                                    mediaPontos = 0
+                                    mediaLevantamentos = 0.2
+                                    mediaBloqueio = 0
+                                    mediaRecepcoes = 1
+                                    mediaRallysPorSet = 3
+                                break
 
                         else:
                             for i in range(index_Temporada, -1, -1):
@@ -337,38 +337,38 @@ def menu_jogar_temporada(temporada):
                                             peso /= 2
                                     break
                             
-                                else:
-                                    if(jogador.posicao == "Oposto"):
-                                        mediaPontos = 0.5
-                                        mediaLevantamentos = 0.05
-                                        mediaBloqueio = 0.2
-                                        mediaRecepcoes = 0.1
-                                        mediaRallysPorSet = 7
-                                    if(jogador.posicao == "Ponteiro"):
-                                        mediaPontos = 0.3
-                                        mediaLevantamentos = 0.05
-                                        mediaBloqueio = 0.2
-                                        mediaRecepcoes = 0.3
-                                        mediaRallysPorSet = 9
-                                    if(jogador.posicao == "Levantador"):
-                                        mediaPontos = 0.1
-                                        mediaLevantamentos = 1
-                                        mediaBloqueio = 0.1
-                                        mediaRecepcoes = 0.05
-                                        mediaRallysPorSet = 10
-                                    if(jogador.posicao == "Central"):
-                                        mediaPontos = 0.3
-                                        mediaLevantamentos = 0.05
-                                        mediaBloqueio = 0.5
-                                        mediaRecepcoes = 0.05
-                                        mediaRallysPorSet = 5
-                                    if(jogador.posicao == "Líbero"):
-                                        mediaPontos = 0
-                                        mediaLevantamentos = 0.2
-                                        mediaBloqueio = 0
-                                        mediaRecepcoes = 1
-                                        mediaRallysPorSet = 5
-                                    break
+                            else:
+                                if(jogador.posicao == "Oposto"):
+                                    mediaPontos = 0.7
+                                    mediaLevantamentos = 0.05
+                                    mediaBloqueio = 0.2
+                                    mediaRecepcoes = 0.1
+                                    mediaRallysPorSet = 7
+                                if(jogador.posicao == "Ponteiro"):
+                                    mediaPontos = 0.5
+                                    mediaLevantamentos = 0.05
+                                    mediaBloqueio = 0.2
+                                    mediaRecepcoes = 0.5
+                                    mediaRallysPorSet = 9
+                                if(jogador.posicao == "Levantador"):
+                                    mediaPontos = 0.1
+                                    mediaLevantamentos = 1
+                                    mediaBloqueio = 0.1
+                                    mediaRecepcoes = 0.1
+                                    mediaRallysPorSet = 10
+                                if(jogador.posicao == "Central"):
+                                    mediaPontos = 0.3
+                                    mediaLevantamentos = 0.05
+                                    mediaBloqueio = 0.7
+                                    mediaRecepcoes = 0.1
+                                    mediaRallysPorSet = 5
+                                if(jogador.posicao == "Líbero"):
+                                    mediaPontos = 0
+                                    mediaLevantamentos = 0.2
+                                    mediaBloqueio = 0
+                                    mediaRecepcoes = 1
+                                    mediaRallysPorSet = 3
+                                break
                             
                         else:
                             for i in range(index_Temporada, -1, -1):
@@ -538,35 +538,35 @@ def menu_campeonato(campeonato,temporada):
                         
                             else:
                                 if(jogador.posicao == "Oposto"):
-                                    mediaPontos = 0.5
+                                    mediaPontos = 0.7
                                     mediaLevantamentos = 0.05
                                     mediaBloqueio = 0.2
                                     mediaRecepcoes = 0.1
                                     mediaRallysPorSet = 7
                                 if(jogador.posicao == "Ponteiro"):
-                                    mediaPontos = 0.3
+                                    mediaPontos = 0.5
                                     mediaLevantamentos = 0.05
                                     mediaBloqueio = 0.2
-                                    mediaRecepcoes = 0.3
+                                    mediaRecepcoes = 0.5
                                     mediaRallysPorSet = 9
                                 if(jogador.posicao == "Levantador"):
                                     mediaPontos = 0.1
                                     mediaLevantamentos = 1
                                     mediaBloqueio = 0.1
-                                    mediaRecepcoes = 0.05
+                                    mediaRecepcoes = 0.1
                                     mediaRallysPorSet = 10
                                 if(jogador.posicao == "Central"):
                                     mediaPontos = 0.3
                                     mediaLevantamentos = 0.05
-                                    mediaBloqueio = 0.5
-                                    mediaRecepcoes = 0.05
+                                    mediaBloqueio = 0.7
+                                    mediaRecepcoes = 0.1
                                     mediaRallysPorSet = 5
                                 if(jogador.posicao == "Líbero"):
                                     mediaPontos = 0
                                     mediaLevantamentos = 0.2
                                     mediaBloqueio = 0
                                     mediaRecepcoes = 1
-                                    mediaRallysPorSet = 5
+                                    mediaRallysPorSet = 3
                                 break
 
                     else:
