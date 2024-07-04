@@ -150,16 +150,57 @@ def menu_jogar_temporada(temporada):
                         mediaRecepcoes = 0
                         mediaRallysPorSet = 0
                         if(historico.contar_rallys_do_jogador(jogador) == 0):
-                            jogador_base = random.choice([jogador_escolhido for jogador_escolhido in historico.Jogadores if jogador_escolhido.posicao == jogador.posicao])
-                            for i in range(index_Temporada, -1, -1):
-                                if historico.Temporadas[i].contar_rallys_do_jogador(jogador_base) != 0:
-                                    mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
-                                    mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
-                                    mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
-                                    mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
-                                    mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador_base))
-                                    pesoTotal += peso
-                                    peso /= 2
+                            while(True):
+                                aleatorioOuMedia = random.choice([0, 1])
+                                if(aleatorioOuMedia == 0):
+                                    jogador_base = random.choice([jogador_escolhido for jogador_escolhido in historico.Jogadores if jogador_escolhido.posicao == jogador.posicao])
+                                    if(historico.contar_rallys_do_jogador(jogador_base) == 0):
+                                        continue
+                                                
+                                    for i in range(index_Temporada, -1, -1):
+                                        if historico.Temporadas[i].contar_rallys_do_jogador(jogador_base) != 0:
+                                            mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                            mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                            mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                            mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                            mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador_base))
+                                            pesoTotal += peso
+                                            peso /= 2
+                                    break
+                            
+                                else:
+                                    if(jogador.posicao == "Oposto"):
+                                        mediaPontos = 0.5
+                                        mediaLevantamentos = 0.05
+                                        mediaBloqueio = 0.2
+                                        mediaRecepcoes = 0.1
+                                        mediaRallysPorSet = 7
+                                    if(jogador.posicao == "Ponteiro"):
+                                        mediaPontos = 0.3
+                                        mediaLevantamentos = 0.05
+                                        mediaBloqueio = 0.2
+                                        mediaRecepcoes = 0.3
+                                        mediaRallysPorSet = 9
+                                    if(jogador.posicao == "Levantador"):
+                                        mediaPontos = 0.1
+                                        mediaLevantamentos = 1
+                                        mediaBloqueio = 0.1
+                                        mediaRecepcoes = 0.05
+                                        mediaRallysPorSet = 10
+                                    if(jogador.posicao == "Central"):
+                                        mediaPontos = 0.3
+                                        mediaLevantamentos = 0.05
+                                        mediaBloqueio = 0.5
+                                        mediaRecepcoes = 0.05
+                                        mediaRallysPorSet = 5
+                                    if(jogador.posicao == "Líbero"):
+                                        mediaPontos = 0
+                                        mediaLevantamentos = 0.2
+                                        mediaBloqueio = 0
+                                        mediaRecepcoes = 1
+                                        mediaRallysPorSet = 5
+                                    break
+
                         else:
                             for i in range(index_Temporada, -1, -1):
                                 if historico.Temporadas[i].contar_rallys_do_jogador(jogador) != 0:
@@ -278,16 +319,57 @@ def menu_jogar_temporada(temporada):
                         mediaRecepcoes = 0
                         mediaRallysPorSet = 0
                         if(historico.contar_rallys_do_jogador(jogador) == 0):
-                            jogador_base = random.choice([jogador_escolhido for jogador_escolhido in historico.Jogadores if jogador_escolhido.posicao == jogador.posicao])
-                            for i in range(index_Temporada, -1, -1):
-                                if historico.Temporadas[i].contar_rallys_do_jogador(jogador_base) != 0:
-                                    mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
-                                    mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
-                                    mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
-                                    mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
-                                    mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador_base))
-                                    pesoTotal += peso
-                                    peso /= 2
+                            while(True):
+                                aleatorioOuMedia = random.choice([0, 1])
+                                if(aleatorioOuMedia == 0):
+                                    jogador_base = random.choice([jogador_escolhido for jogador_escolhido in historico.Jogadores if jogador_escolhido.posicao == jogador.posicao])
+                                    if(historico.contar_rallys_do_jogador(jogador_base) == 0):
+                                        continue
+                                                
+                                    for i in range(index_Temporada, -1, -1):
+                                        if historico.Temporadas[i].contar_rallys_do_jogador(jogador_base) != 0:
+                                            mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                            mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                            mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                            mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                            mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador_base))
+                                            pesoTotal += peso
+                                            peso /= 2
+                                    break
+                            
+                                else:
+                                    if(jogador.posicao == "Oposto"):
+                                        mediaPontos = 0.5
+                                        mediaLevantamentos = 0.05
+                                        mediaBloqueio = 0.2
+                                        mediaRecepcoes = 0.1
+                                        mediaRallysPorSet = 7
+                                    if(jogador.posicao == "Ponteiro"):
+                                        mediaPontos = 0.3
+                                        mediaLevantamentos = 0.05
+                                        mediaBloqueio = 0.2
+                                        mediaRecepcoes = 0.3
+                                        mediaRallysPorSet = 9
+                                    if(jogador.posicao == "Levantador"):
+                                        mediaPontos = 0.1
+                                        mediaLevantamentos = 1
+                                        mediaBloqueio = 0.1
+                                        mediaRecepcoes = 0.05
+                                        mediaRallysPorSet = 10
+                                    if(jogador.posicao == "Central"):
+                                        mediaPontos = 0.3
+                                        mediaLevantamentos = 0.05
+                                        mediaBloqueio = 0.5
+                                        mediaRecepcoes = 0.05
+                                        mediaRallysPorSet = 5
+                                    if(jogador.posicao == "Líbero"):
+                                        mediaPontos = 0
+                                        mediaLevantamentos = 0.2
+                                        mediaBloqueio = 0
+                                        mediaRecepcoes = 1
+                                        mediaRallysPorSet = 5
+                                    break
+                            
                         else:
                             for i in range(index_Temporada, -1, -1):
                                 if historico.Temporadas[i].contar_rallys_do_jogador(jogador) != 0:
@@ -436,16 +518,57 @@ def menu_campeonato(campeonato,temporada):
                     mediaRecepcoes = 0
                     mediaRallysPorSet = 0
                     if(historico.contar_rallys_do_jogador(jogador) == 0):
-                        jogador_base = random.choice([jogador_escolhido for jogador_escolhido in historico.Jogadores if jogador_escolhido.posicao == jogador.posicao])
-                        for i in range(index_Temporada, -1, -1):
-                            if historico.Temporadas[i].contar_rallys_do_jogador(jogador_base) != 0:
-                                mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
-                                mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
-                                mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
-                                mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
-                                mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador_base))
-                                pesoTotal += peso
-                                peso /= 2
+                        while(True):
+                            aleatorioOuMedia = random.choice([0, 1])
+                            if(aleatorioOuMedia == 0):
+                                jogador_base = random.choice([jogador_escolhido for jogador_escolhido in historico.Jogadores if jogador_escolhido.posicao == jogador.posicao])
+                                if(historico.contar_rallys_do_jogador(jogador_base) == 0):
+                                    continue
+                                            
+                                for i in range(index_Temporada, -1, -1):
+                                    if historico.Temporadas[i].contar_rallys_do_jogador(jogador_base) != 0:
+                                        mediaPontos += peso*(historico.Temporadas[i].calcularPontosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                        mediaLevantamentos += peso*(historico.Temporadas[i].calcularLevantamentosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                        mediaBloqueio += peso*(historico.Temporadas[i].calcularBloqueiosJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                        mediaRecepcoes += peso*(historico.Temporadas[i].calcularRecepcoesJogadorTemporada(jogador_base) / historico.Temporadas[i].contar_rallys_do_jogador(jogador_base))
+                                        mediaRallysPorSet += peso*(historico.Temporadas[i].contar_rallys_por_set_do_jogador(jogador_base))
+                                        pesoTotal += peso
+                                        peso /= 2
+                                break
+                        
+                            else:
+                                if(jogador.posicao == "Oposto"):
+                                    mediaPontos = 0.5
+                                    mediaLevantamentos = 0.05
+                                    mediaBloqueio = 0.2
+                                    mediaRecepcoes = 0.1
+                                    mediaRallysPorSet = 7
+                                if(jogador.posicao == "Ponteiro"):
+                                    mediaPontos = 0.3
+                                    mediaLevantamentos = 0.05
+                                    mediaBloqueio = 0.2
+                                    mediaRecepcoes = 0.3
+                                    mediaRallysPorSet = 9
+                                if(jogador.posicao == "Levantador"):
+                                    mediaPontos = 0.1
+                                    mediaLevantamentos = 1
+                                    mediaBloqueio = 0.1
+                                    mediaRecepcoes = 0.05
+                                    mediaRallysPorSet = 10
+                                if(jogador.posicao == "Central"):
+                                    mediaPontos = 0.3
+                                    mediaLevantamentos = 0.05
+                                    mediaBloqueio = 0.5
+                                    mediaRecepcoes = 0.05
+                                    mediaRallysPorSet = 5
+                                if(jogador.posicao == "Líbero"):
+                                    mediaPontos = 0
+                                    mediaLevantamentos = 0.2
+                                    mediaBloqueio = 0
+                                    mediaRecepcoes = 1
+                                    mediaRallysPorSet = 5
+                                break
+
                     else:
                         for i in range(index_Temporada, -1, -1):
                             if historico.Temporadas[i].contar_rallys_do_jogador(jogador) != 0:
@@ -884,10 +1007,10 @@ def resgatar_average_time(times):
 
 def exibe_ranking_jogador(jogadores, averages, pontos, levantamentos, recepcoes, bloqueios, rallys_jogados):
     sorted_jogadores = sorted(zip(jogadores, averages, pontos, levantamentos, recepcoes, bloqueios, rallys_jogados), key=lambda x: x[1], reverse=True)
-    print(f"{'Posição':<12}{'Jogador':<22}{'Average':<10}{'Pontos':<9}{'Levantamentos':<14}{'Recepções':<14}{'Bloqueios':<14}{'Rallys Jogados':<14}")
+    print(f"{'Posição':<12}{'Jogador':<22}{'Posição':<22}{'Average':<10}{'Pontos':<9}{'Levantamentos':<14}{'Recepções':<14}{'Bloqueios':<14}{'Rallys Jogados':<14}")
     print("-" * 100)
     for i, (jogador,avg,pts,lev,rec,blo,rall) in enumerate(sorted_jogadores, start=1):
-        print(f"{i:<12}{jogador.nome:<22}{avg:<10.2f}{pts:<9}{lev:<14}{rec:<14}{blo:<14}{rall:<14}")
+        print(f"{i:<12}{jogador.nome:<22}{jogador.posicao:<22}{avg:<10.2f}{pts:<9}{lev:<14}{rec:<14}{blo:<14}{rall:<14}")
 
 def exibe_ranking_times(times, averages):
     sorted_times = sorted(zip(times, averages), key=lambda x: x[1], reverse=True)

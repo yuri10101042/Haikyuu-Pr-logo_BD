@@ -161,16 +161,16 @@ class Rally:
             self.EmQuadra.append(jogador)
 
         # 1- Verifica quantos levantamentos, bloqueios e recepções cada jogador realiza com base nas médias
-        levantamentos_time1 = [max(int(random.gauss(media[1], 1)), 0) for media in mediasEmQuadra1]  # Variação de ±0.5 no desvio padrão
-        bloqueios_time1 = [max(int(random.gauss(media[2], 1)), 0) for media in mediasEmQuadra1]
-        recepcoes_time1 = [max(int(random.gauss(media[3], 1)), 0) for media in mediasEmQuadra1]
+        levantamentos_time1 = [max(int(random.gauss(media[1], 0.5)), 0) for media in mediasEmQuadra1]  # Variação de ±0.5 no desvio padrão
+        bloqueios_time1 = [max(int(random.gauss(media[2], 0.5)), 0) for media in mediasEmQuadra1]
+        recepcoes_time1 = [max(int(random.gauss(media[3], 0.5)), 0) for media in mediasEmQuadra1]
 
-        levantamentos_time2 = [max(int(random.gauss(media[1], 1)), 0) for media in mediasEmQuadra2]
-        bloqueios_time2 = [max(int(random.gauss(media[2], 1)), 0) for media in mediasEmQuadra2]
-        recepcoes_time2 = [max(int(random.gauss(media[3], 1)), 0) for media in mediasEmQuadra2]
+        levantamentos_time2 = [max(int(random.gauss(media[1], 0.5)), 0) for media in mediasEmQuadra2]
+        bloqueios_time2 = [max(int(random.gauss(media[2], 0.5)), 0) for media in mediasEmQuadra2]
+        recepcoes_time2 = [max(int(random.gauss(media[3], 0.5)), 0) for media in mediasEmQuadra2]
 
         for jogador in EmQuadra1:
-            if jogador.posicao == "Libero":
+            if jogador.posicao == "Líbero":
                 bloqueios_time1[EmQuadra1.index(jogador)] = 0
             for _ in range(levantamentos_time1[EmQuadra1.index(jogador)]):
                 self.adicionar_levantamento(jogador.nome)
@@ -180,7 +180,7 @@ class Rally:
                 self.adicionar_recepcao(jogador.nome)
 
         for jogador in EmQuadra2:
-            if jogador.posicao == "Libero":
+            if jogador.posicao == "Líbero":
                 bloqueios_time2[EmQuadra2.index(jogador)] = 0
             for _ in range(levantamentos_time2[EmQuadra2.index(jogador)]):
                 self.adicionar_levantamento(jogador.nome)
@@ -224,7 +224,7 @@ class Rally:
                     self.ponto = False
                     break
                 pontuador = random.choices(EmQuadra1 if vencedor_rally == time1.nome else EmQuadra2, weights=pontos_jogadores_time_vencedor)[0]
-                if pontuador.posicao == "Libero":
+                if pontuador.posicao == "Líbero":
                     continue
                 self.ponto = pontuador.nome
                 break
