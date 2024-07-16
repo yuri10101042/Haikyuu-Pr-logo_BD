@@ -143,10 +143,10 @@ class Set:
         for _ in range(min(modalidade.quantidade_jogadores_em_quadra, len(time1.elenco_atual))):
             while True:
                 jogador = random.choices(jogadores_disponiveis_time1, weights=rallysPorSet_time1_temp, k=1)[0]
-                if jogador.posicao == 'Libero' and libero_em_quadra_time1:
+                if jogador.posicao == 'Líbero' and libero_em_quadra_time1:
                     continue
                 else:
-                    if jogador.posicao == 'Libero':
+                    if jogador.posicao == 'Líbero':
                         libero_em_quadra_time1 = True
                     time1_em_quadra.append(jogador)
                     del rallysPorSet_time1_temp[jogadores_disponiveis_time1.index(jogador)]
@@ -163,10 +163,10 @@ class Set:
         for _ in range(min(modalidade.quantidade_jogadores_em_quadra, len(time2.elenco_atual))):
             while True:
                 jogador = random.choices(jogadores_disponiveis_time2, weights=rallysPorSet_time2_temp, k=1)[0]
-                if jogador.posicao == 'Libero' and libero_em_quadra_time2:
+                if jogador.posicao == 'Líbero' and libero_em_quadra_time2:
                     continue
                 else:
-                    if jogador.posicao == 'Libero':
+                    if jogador.posicao == 'Líbero':
                         libero_em_quadra_time2 = True
                     time2_em_quadra.append(jogador)
                     del rallysPorSet_time2_temp[jogadores_disponiveis_time2.index(jogador)]
