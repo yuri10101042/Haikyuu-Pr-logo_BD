@@ -10,8 +10,9 @@ class Fase:
 
     def criarPartidas(self, times_classificados_fase_anterior):
         times = times_classificados_fase_anterior
-        random.shuffle(times)
-        partidas = [Partida(times[i], times[i + 1], self.modalidade) for i in range(0, len(times), 2)]
+        ordem = [i for i in range(0, len(times), 2)]
+        random.shuffle(ordem)
+        partidas = [Partida(times[i], times[i + 1], self.modalidade) for i in ordem]
         self.partidas = partidas
 
     def todasPartidasConcluidas(self):
